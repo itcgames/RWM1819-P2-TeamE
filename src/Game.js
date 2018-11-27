@@ -12,7 +12,7 @@ class Game
      );
      gameNs.world = this.world
      gameNs.b2DebugDraw = this.b2DebugDraw
-     this.line = new Line(10,10,this.world)
+     this.line = new Shape(10,10,this.world)
   }
     /**
   * initWorld
@@ -32,9 +32,8 @@ class Game
   {
     //draws to screen
 
-
     gameNs.world.Step(
-          1 / 60   //frame-rate
+          1 / 6000   //frame-rate
        ,  10       //velocity iterations
        ,  10       //position iterations
     );

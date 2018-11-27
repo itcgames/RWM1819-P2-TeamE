@@ -1,4 +1,4 @@
-class Line
+class Shape
 {
   constructor(x,y,world)
   {
