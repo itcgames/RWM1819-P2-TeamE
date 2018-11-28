@@ -17,10 +17,10 @@ class Line
 
     var bodyDef = new b2BodyDef;
 
-    bodyDef.type = b2Body.b2_dynamicBody;
+    bodyDef.type = b2Body.b2_staticBody;
 
     fixDef.shape = new b2PolygonShape;
-    fixDef.shape.SetAsBox(10, .1);
+    fixDef.shape.SetAsBox(5, .1);
     bodyDef.position.x = x;
     bodyDef.position.y = y;
     world.CreateBody(bodyDef).CreateFixture(fixDef);

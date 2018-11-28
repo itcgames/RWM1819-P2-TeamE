@@ -9,10 +9,11 @@ var gameNs = {};
 
 function main(){
 	initCanvas();
-	var game = new Game();
-	gameNs.game = game;
-	game.initWorld();
-	game.update();
+  var play = new Play();
+	gameNs.play = play;
+	play.initWorld();
+	play.update();
+	play.render();
 }
 /**
  * Initialises the canvas - the drawing surface. The canvas
@@ -32,4 +33,9 @@ function initCanvas(){
 	var ctx = canvas.getContext("2d");
 	// Adds the canvas element to the document.
 	document.body.appendChild(canvas);
+}
+
+function draw(play)
+{
+	play.draw()
 }

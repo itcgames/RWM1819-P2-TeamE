@@ -19,10 +19,10 @@ class Shape
 
     //create ground
     bodyDef.type = b2Body.b2_staticBody;
-    bodyDef.position.x = x;
-    bodyDef.position.y = y;
+    bodyDef.position.x = 10;
+    bodyDef.position.y = 25;
     fixDef.shape = new b2PolygonShape;
-    fixDef.shape.SetAsBox(10, 0.5);
+    fixDef.shape.SetAsBox(25, 0.5);
     world.CreateBody(bodyDef).CreateFixture(fixDef);
 
     //create some objects

@@ -1,7 +1,8 @@
 class Game
 {
-  constructor()
+  constructor(title)
   {
+    this.title = title
     var b2Vec2 = Box2D.Common.Math.b2Vec2
     var b2World = Box2D.Dynamics.b2World
     this.b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
@@ -16,6 +17,15 @@ class Game
      //this.line = new Line(10, 10,10, this.world)
      this.gestureManager = new GestureManager()
      this.startingPosition = []
+     this.gestureManager.init()
+
+     var debugDraw = new gameNs.b2DebugDraw();
+     debugDraw.SetSprite(document.getElementById("mycanvas").getContext("2d"));
+     debugDraw.SetDrawScale(30.0);
+     debugDraw.SetFillAlpha(0.3);
+     debugDraw.SetLineThickness(1.0);
+     debugDraw.SetFlags(gameNs.b2DebugDraw.e_shapeBit | gameNs.b2DebugDraw.e_jointBit);
+     gameNs.world.SetDebugDraw(debugDraw);
   }
     /**
   * initWorld
@@ -24,7 +34,6 @@ class Game
   initWorld()
   {
     console.log("Initialising game world");
-    this.gestureManager.init()
     this.update = this.update.bind(this);
   }
 
@@ -53,7 +62,7 @@ class Game
     gameNs.world.DrawDebugData();
     gameNs.world.ClearForces();
 
-    this.render();
+    //this.render();
   }
 
   render()
@@ -62,15 +71,9 @@ class Game
     //var canvas = document.getElementById("mycanvas");
     //var ctx = canvas.getContext("2d");
 
-    var debugDraw = new gameNs.b2DebugDraw();
-    debugDraw.SetSprite(document.getElementById("mycanvas").getContext("2d"));
-    debugDraw.SetDrawScale(30.0);
-    debugDraw.SetFillAlpha(0.3);
-    debugDraw.SetLineThickness(1.0);
-    debugDraw.SetFlags(gameNs.b2DebugDraw.e_shapeBit | gameNs.b2DebugDraw.e_jointBit);
-    gameNs.world.SetDebugDraw(debugDraw);
 
-    window.setInterval(this.update, 1000 / 60);
+
+    //window.setInterval(this.update, 1000 / 60);
   //  ctx.clearRect(0,0,canvas.width,canvas.height);
 
   }

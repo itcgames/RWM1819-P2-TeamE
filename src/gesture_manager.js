@@ -3,6 +3,9 @@ class GestureManager
   constructor(){
     this.lastX = null;
     this.lastY = null;
+    this.moving = false
+    this.endX = null
+    this.endY = null
     this.timeout = null;
     this.timeOne = null;
     this.lastTap = 0;
@@ -40,6 +43,11 @@ class GestureManager
     var xUp = this.touches[0].clientX
     var yUp = this.touches[0].clientY
 
+    this.moving = true
+
+    this.endX = this.touches[0].clientX;
+	  this.endY = this.touches[0].clientY;
+
     var xDiff = this.lastX - xUp;
     var yDiff = this.lastY - yUp;
 
@@ -63,6 +71,8 @@ class GestureManager
         this.swipeDetected = true
       }
     }
+    this.lastX =  this.touches[0].clientX
+    this.lastY =  this.touches[0].clientY
   }
 
   onTouchEnd(e){
@@ -77,7 +87,7 @@ class GestureManager
     this.lastTap = currentTime;
 
     this.swipeDetected = false
-
+    this.moving = false
   }
   resetDetection(){
     this.oneTouch = false;
@@ -94,9 +104,18 @@ class GestureManager
   getDirection(){
     return this.direction;
   }
+  getMovement()
+  {
+    return this.moving
+  }
   getTouchPosition()
   {
     return [this.lastX, this.lastY];
+  }
+
+  getLastTouchPosition()
+  {
+    return [this.endX, this.endY];
   }
   getDoubleTouchDetection(){
     return this.doubleTouch;
