@@ -13,7 +13,6 @@ function main(){
 	gameNs.game = game;
 	game.initWorld();
 	game.update();
-  //game.draw();
 }
 /**
  * Initialises the canvas - the drawing surface. The canvas

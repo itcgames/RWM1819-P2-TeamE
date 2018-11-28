@@ -12,7 +12,10 @@ class Game
      );
      gameNs.world = this.world
      gameNs.b2DebugDraw = this.b2DebugDraw
-     this.line = new Shape(10,10,this.world)
+     this.shape = new Shape(10,10,this.world)
+     this.line = new Line(10, 10,10, this.world)
+     this.gestureManager = new GestureManager()
+     this.startingPosition = []
   }
     /**
   * initWorld
@@ -21,6 +24,7 @@ class Game
   initWorld()
   {
     console.log("Initialising game world");
+    this.gestureManager.init()
     this.update = this.update.bind(this);
   }
 
@@ -30,24 +34,33 @@ class Game
  */
   update()
   {
-    //draws to screen
+    if (this.gestureManager.getOnePointDetection())
+    {
+      this.startingPosition = this.gestureManager.getTouchPosition()
+      this.startingPosition[0] = this.startingPosition[0] / 30
+      this.startingPosition[1] = this.startingPosition[1] / 30
+      console.log(this.startingPosition)
+      this.line = new Line(this.startingPosition[0], this.startingPosition[1],10, this.world)
+
+      this.gestureManager.resetDetection()
+    }
 
     gameNs.world.Step(
-          1 / 6000   //frame-rate
+          1 / 3600  //frame-rate
        ,  10       //velocity iterations
        ,  10       //position iterations
     );
     gameNs.world.DrawDebugData();
     gameNs.world.ClearForces();
 
-    this.render()
+    this.render();
   }
 
   render()
   {
     //setup debug draw
-    var canvas = document.getElementById("mycanvas");
-    var ctx = canvas.getContext("2d");
+    //var canvas = document.getElementById("mycanvas");
+    //var ctx = canvas.getContext("2d");
 
     var debugDraw = new gameNs.b2DebugDraw();
     debugDraw.SetSprite(document.getElementById("mycanvas").getContext("2d"));
