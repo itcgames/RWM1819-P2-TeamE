@@ -41,7 +41,7 @@ class TitleScene
   {
     var canvas = document.createElement("mycanvas");
     var ctx = mycanvas.getContext("2d");
-    document.body.style.background = "#11d1e1";
+    document.body.style.background = "#ffffff";
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
     ctx.font = '100px serif'; //48
 

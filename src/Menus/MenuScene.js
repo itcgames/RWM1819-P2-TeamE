@@ -54,6 +54,10 @@ class MenuScene
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
     document.body.style.background = "#0C8100";
 
+    ctx.font = '100px serif'; //48
+
+    ctx.fillText(this.title, 100,100);
   }
+  
 
 }

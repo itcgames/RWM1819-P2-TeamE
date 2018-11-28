@@ -55,7 +55,7 @@ class Game
     }
 
     gameNs.world.Step(
-          1 / 3600  //frame-rate
+          1 / 60  //frame-rate
        ,  10       //velocity iterations
        ,  10       //position iterations
     );
@@ -68,10 +68,10 @@ class Game
   render()
   {
     //setup debug draw
-    //var canvas = document.getElementById("mycanvas");
-    //var ctx = canvas.getContext("2d");
+    var canvas = document.getElementById("mycanvas");
+    var ctx = canvas.getContext("2d");
 
-
+    document.body.style.background = "#ffffff";
 
     //window.setInterval(this.update, 1000 / 60);
   //  ctx.clearRect(0,0,canvas.width,canvas.height);
