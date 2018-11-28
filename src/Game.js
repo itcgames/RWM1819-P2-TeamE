@@ -19,9 +19,10 @@ class Game
 
      this.AssetManager = new AssetManager(100, 100 / 2, 1000, 100, "mycanvas")
      // Load your image from path.
-    this.AssetManager.load("img/coin.png");
-    // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
-    this.AssetManager.setSpriteSheet(true, 3, 10);
+     this.AssetManager.load("img/coin.png");
+
+     // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
+     this.AssetManager.setSpriteSheet(true, 3, 10);
   }
     /**
   * initWorld
@@ -32,6 +33,8 @@ class Game
     console.log("Initialising game world");
     this.gestureManager.init()
     this.update = this.update.bind(this);
+    gameNs.game.jsonLoader = new JsonLoader();
+    gameNs.game.jsonLoader.loadJSON("assets");
   }
 
   /**
