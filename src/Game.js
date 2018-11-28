@@ -16,6 +16,12 @@ class Game
      //this.line = new Line(10, 10,10, this.world)
      this.gestureManager = new GestureManager()
      this.startingPosition = []
+
+     this.AssetManager = new AssetManager(100, 100 / 2, 1000, 100, "mycanvas")
+     // Load your image from path.
+    this.AssetManager.load("img/coin.png");
+    // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
+    this.AssetManager.setSpriteSheet(true, 3, 10);
   }
     /**
   * initWorld
@@ -46,12 +52,15 @@ class Game
     }
 
     gameNs.world.Step(
-          1 / 3600  //frame-rate
+          1 / 6000  //frame-rate
        ,  10       //velocity iterations
        ,  10       //position iterations
     );
     gameNs.world.DrawDebugData();
     gameNs.world.ClearForces();
+
+    gameNs.game.AssetManager.update();
+    window.requestAnimationFrame(gameNs.game.update);
 
     this.render();
   }
@@ -69,6 +78,9 @@ class Game
     debugDraw.SetLineThickness(1.0);
     debugDraw.SetFlags(gameNs.b2DebugDraw.e_shapeBit | gameNs.b2DebugDraw.e_jointBit);
     gameNs.world.SetDebugDraw(debugDraw);
+
+    // Draw Image / Animation.
+    this.AssetManager.draw();
 
     window.setInterval(this.update, 1000 / 60);
   //  ctx.clearRect(0,0,canvas.width,canvas.height);
