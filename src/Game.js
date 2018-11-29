@@ -31,6 +31,7 @@ class Game
      debugDraw.SetFlags(this.b2DebugDraw.e_shapeBit | this.b2DebugDraw.e_jointBit);
      this.world.SetDebugDraw(debugDraw);
 
+     this.audioManager = new AudioManager();
 	 for(var i = 0; i < 400; i++)
     		{
     			snw[i] = new snow();
