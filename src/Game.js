@@ -15,21 +15,21 @@ class Game
            new b2Vec2(0, 10)    //gravity
         ,  true                 //allow sleep
      );
-     gameNs.world = this.world
-     gameNs.b2DebugDraw = this.b2DebugDraw
+     //gameNs.world = this.world
+    // gameNs.b2DebugDraw = this.b2DebugDraw
      this.shape = new Shape(10,10,this.world)
      //this.line = new Line(10, 10,10, this.world)
      this.gestureManager = new GestureManager()
      this.startingPosition = []
      this.gestureManager.init()
 
-     var debugDraw = new gameNs.b2DebugDraw();
+     var debugDraw = new this.b2DebugDraw();
      debugDraw.SetSprite(document.getElementById("mycanvas").getContext("2d"));
      debugDraw.SetDrawScale(30.0);
      debugDraw.SetFillAlpha(0.3);
      debugDraw.SetLineThickness(1.0);
-     debugDraw.SetFlags(gameNs.b2DebugDraw.e_shapeBit | gameNs.b2DebugDraw.e_jointBit);
-     gameNs.world.SetDebugDraw(debugDraw);
+     debugDraw.SetFlags(this.b2DebugDraw.e_shapeBit | this.b2DebugDraw.e_jointBit);
+     this.world.SetDebugDraw(debugDraw);
 
      this.audioManager = new AudioManager();
 	 for(var i = 0; i < 400; i++)
@@ -67,13 +67,13 @@ class Game
 
     }
 
-    gameNs.world.Step(
+    this.world.Step(
           1 / 60  //frame-rate
        ,  10       //velocity iterations
        ,  10       //position iterations
     );
-    gameNs.world.DrawDebugData();
-    gameNs.world.ClearForces();
+    this.world.DrawDebugData();
+    this.world.ClearForces();
 
     //this.render();
 	for(var k = 0; k < snw.length; k++)
