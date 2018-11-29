@@ -40,11 +40,24 @@ class Game
      debugDraw.SetFlags(this.b2DebugDraw.e_shapeBit | this.b2DebugDraw.e_jointBit);
      this.world.SetDebugDraw(debugDraw);
 
-     this.audioManager = new AudioManager();
-	    for(var i = 0; i < 400; i++)
-    		{
-    			snw[i] = new snow();
-    		}
+     ///this.audioManager = new AudioManager();
+
+     var that = this;
+   for(var i = 0; i < 400; i++)
+        {
+          snw[i] = new snow();
+        }
+
+      var clearButton = document.getElementById("clearBodies");
+          clearButton.addEventListener("touchend", function()
+          {
+            that.shape.clearEverything();
+          });
+      var clearLastButton = document.getElementById("clearLast");
+      clearLastButton.addEventListener("touchend", function()
+          {
+            that.shape.clearLastDrawn();
+          });
 
   }
     /**

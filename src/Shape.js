@@ -1,3 +1,5 @@
+destroy = [];
+
 class Shape
 {
   constructor(x,y,world)
@@ -24,6 +26,7 @@ class Shape
     fixDef.shape = new b2PolygonShape;
     fixDef.shape.SetAsBox(25, 0.5);
     world.CreateBody(bodyDef).CreateFixture(fixDef);
+    world.DestroyBody(bodyDef);
 
     //create some objects
     bodyDef.type = b2Body.b2_dynamicBody;
@@ -42,6 +45,7 @@ class Shape
        bodyDef.position.x = Math.random() * 10;
        bodyDef.position.y = Math.random() * 10;
        world.CreateBody(bodyDef).CreateFixture(fixDef);
+       destroy.pop(bodyDef);
      }
   }
 
@@ -53,5 +57,21 @@ class Shape
   draw()
   {
 
+  }
+
+  clearEverything()
+  {
+    var count = gameNs.game.world.GetBodyCount();
+
+    console.log(count);
+    for(var i in destroy)
+    {
+      gameNs.game.world.DestroyBody(destroy[i]);
+    }
+
+  }
+  clearLastDrawn()
+  {
+    //erase last drawn line(can be continious until none remain)
   }
 }
