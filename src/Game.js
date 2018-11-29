@@ -41,7 +41,7 @@ class Game
      debugDraw.SetFlags(this.b2DebugDraw.e_shapeBit | this.b2DebugDraw.e_jointBit);
      this.world.SetDebugDraw(debugDraw);
 
-     this.audioManager = new AudioManager();
+     //this.audioManager = new AudioManager();
 
 	    for(var i = 0; i < 400; i++)
     		{
@@ -91,7 +91,7 @@ class Game
       //this.gestureManager.resetDetection()
 
     }
-  
+
 
     //this.AssetManager.update();
     //window.requestAnimationFrame(gameNs.game.update);
