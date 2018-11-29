@@ -31,6 +31,16 @@ class Game
      debugDraw.SetFlags(gameNs.b2DebugDraw.e_shapeBit | gameNs.b2DebugDraw.e_jointBit);
      gameNs.world.SetDebugDraw(debugDraw);
 
+     //Projectile(canvas, context)
+     /*this.projectile = new Projectile(document.getElementById("mycanvas"),
+     document.getElementById("mycanvas").getContext("2D"));
+     //ParticleSystem(canvas, context, x, y, min speed, max speed, width, height,
+     //colour, size, lifespan, maxSpawn, alpha, projectile)
+     this.particleSystem = new ParticleSystem(document.getElementById("mycanvas"),
+     document.getElementById("mycanvas").getContext("2D"), 400, 500, -2, 2, 5, 5, "red", 5, 255, 20, this.projectile);*/
+
+
+
 	 for(var i = 0; i < 400; i++)
     		{
     			snw[i] = new snow();
@@ -53,6 +63,8 @@ class Game
  */
   update()
   {
+    var that = this;
+
     if (this.gestureManager.getOnePointDetection())
     {
       this.startingPosition = this.gestureManager.getTouchPosition()
@@ -89,6 +101,8 @@ class Game
     var ctx = canvas.getContext("2d");
 
     document.body.style.background = "#ffffff";
+
+
 
     //window.setInterval(this.update, 1000 / 60);
   //  ctx.clearRect(0,0,canvas.width,canvas.height);
