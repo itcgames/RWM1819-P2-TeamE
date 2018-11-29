@@ -4,10 +4,7 @@ class GestureManager
     this.lastX = null;
     this.lastY = null;
     this.moving = false
-    this.currentX = null
-    this.currentY = null
-    this.startX = null
-    this.startY = null
+
     this.endX = null
     this.endY = null
     this.timeout = null;
@@ -18,7 +15,14 @@ class GestureManager
     this.oneTouch = false;
     this.swipeDetected = false;
     this.direction = null;
+
+
+    //new line
+    this.vertexPoints;
     this.modeDraw = true;
+    this.startedDrawing = false;
+    this.currentX = null
+    this.currentY = null
   }
   init(){
     document.addEventListener("touchstart", this.onTouchStart.bind(this), {passive:false});
@@ -28,6 +32,7 @@ class GestureManager
 
   onTouchStart(e){
     e.preventDefault();
+    this.vertexPoints = [];
     this.touches = e.touches
 
     var startX = this.touches[0].clientX
@@ -39,21 +44,18 @@ class GestureManager
     this.lastX =  startX
     this.lastY =  startY
 
-    this.startX = startX;
-    this.startY = startY;
   }
 
   onTouchMove(e){
     e.preventDefault();
     this.touches = e.touches
 
+    this.startedDrawing = true;
+    this.vertexPoints.push(this.touches[0])
     var xUp = this.touches[0].clientX
     var yUp = this.touches[0].clientY
 
-    if(this.modeDraw === true)
-    {
-        this.line = new Line(this.touches[0].clientX/30, this.touches[0].clientY/30, gameNs.world,1.0,1,1.0,0.5,0.1)
-    }
+
 
     this.moving = true
 
@@ -89,6 +91,12 @@ class GestureManager
 
   onTouchEnd(e){
     e.preventDefault();
+
+    if(this.startedDrawing===true)
+    {
+      this.line = new Line(this.vertexPoints,gameNs.world, 1.2,1.2,1,0.5,0.2);
+    }
+    this.startedDrawing = false;
     //sets the time
     var currentTime = new Date().getTime();
     var tapLength = currentTime - this.lastTap;
