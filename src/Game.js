@@ -17,7 +17,9 @@ class Game
      );
      gameNs.world = this.world
      gameNs.b2DebugDraw = this.b2DebugDraw
-     this.shape = new Shape(10,10,this.world)
+    // constructor(x,y,world,bodyType, shapeType, width,height)
+    //between 0 and 3.2 for whatever reason for x and y
+    this.shape = new Shape(1.5,2.2,this.world, "dynamic", "circle", 1,1);
      //this.line = new Line(10, 10,10, this.world)
      this.gestureManager = new GestureManager()
      this.startingPosition = []
@@ -32,6 +34,7 @@ class Game
      gameNs.world.SetDebugDraw(debugDraw);
 
      this.audioManager = new AudioManager();
+
 	 for(var i = 0; i < 400; i++)
     		{
     			snw[i] = new snow();
