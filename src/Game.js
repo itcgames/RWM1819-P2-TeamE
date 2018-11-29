@@ -6,6 +6,11 @@ class Game
 {
   constructor(title)
   {
+    //this.AssetManager = new AssetManager(window.innerWidth / 2, window.innerHeight / 2, 2000, 500, "mycanvas");
+   this.AssetManager = new AssetManager(100, 100 / 2, 1000, 100, "mycanvas");
+
+    this.jsonLoader = new JsonLoader();
+    this.jsonLoader.loadJSON("Data");
 
     this.title = title
     var b2Vec2 = Box2D.Common.Math.b2Vec2
@@ -16,11 +21,11 @@ class Game
            new b2Vec2(0, 10)    //gravity
         ,  true                 //allow sleep
      );
-     //this.AssetManager = new AssetManager(window.innerWidth / 2, window.innerHeight / 2, 2000, 500, "mycanvas");
-    this.AssetManager = new AssetManager(100, 100 / 2, 1000, 100, "mycanvas");
+
 
     // Load your image from path.
-    this.AssetManager.load("resources/img/coin.png");
+    //this.AssetManager.load("resources/img/coin.png");
+
     // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
     this.AssetManager.setSpriteSheet(true, 3, 10);
 
@@ -46,6 +51,7 @@ class Game
     			snw[i] = new snow();
     		}
 
+
   }
     /**
   * initWorld
@@ -63,6 +69,8 @@ class Game
  */
   update()
   {
+    if ( gameNs.game.jsonLoader.getLoaded() === true )
+    {
     if (this.gestureManager.getOnePointDetection())
     {
       this.startingPosition = this.gestureManager.getTouchPosition()
@@ -85,7 +93,7 @@ class Game
     );
     this.world.DrawDebugData();
     this.world.ClearForces();
-
+  }
     //this.render();
 	for(var k = 0; k < snw.length; k++)
 				{

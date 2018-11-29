@@ -1,11 +1,5 @@
 {
   "Images":
-  {
-      
-  },
-  "Audio":
-  {
-      
-  }
+      [{ "name": "coinImg", "path": "resources/img/coin.png" }]
 
 }
