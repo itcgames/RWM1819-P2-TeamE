@@ -11,7 +11,7 @@ class JsonLoader
   loadJSON(url)
   {
     var request = new XMLHttpRequest();
-    request.open("GET", "resources/Data/" + url + ".json", true);
+    request.open("GET", "src/json/" + url + ".json", true);
     request.responseType = 'json';
     request.send();
 

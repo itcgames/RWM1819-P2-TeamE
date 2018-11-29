@@ -33,8 +33,8 @@ class Game
     console.log("Initialising game world");
     this.gestureManager.init()
     this.update = this.update.bind(this);
-    gameNs.game.jsonLoader = new JsonLoader();
-    gameNs.game.jsonLoader.loadJSON("assets");
+    //gameNs.game.jsonLoader = new JsonLoader();
+    //gameNs.game.jsonLoader.loadJSON("assets");
   }
 
   /**
