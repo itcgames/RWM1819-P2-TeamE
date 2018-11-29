@@ -13,6 +13,22 @@ class Game
     this.coins = [];
     this.coins[0] = new AssetManager(100, 200 / 2, 300, 30, "mycanvas");
     this.coins[1] = new AssetManager(600, 500 / 2, 300, 30, "mycanvas");
+    this.coins[2] = new AssetManager(150, 300 / 2, 300, 30, "mycanvas");
+    this.coins[3] = new AssetManager(600, 500 / 2, 300, 30, "mycanvas");
+    this.coins[4] = new AssetManager(250, 200 / 2, 300, 30, "mycanvas");
+    this.coins[5] = new AssetManager(800, 700 / 2, 300, 30, "mycanvas");
+    this.coins[6] = new AssetManager(200, 800 / 2, 300, 30, "mycanvas");
+    this.coins[7] = new AssetManager(300, 500 / 2, 300, 30, "mycanvas");
+    this.coins[8] = new AssetManager(750, 200 / 2, 300, 30, "mycanvas");
+    this.coins[9] = new AssetManager(650, 100 / 2, 300, 30, "mycanvas");
+    this.coins[10] = new AssetManager(225, 600 / 2, 300, 30, "mycanvas");
+    this.coins[11] = new AssetManager(675, 250 / 2, 300, 30, "mycanvas");
+    this.coins[12] = new AssetManager(50, 350 / 2, 300, 30, "mycanvas");
+    this.coins[13] = new AssetManager(850, 50 / 2, 300, 30, "mycanvas");
+    this.coins[14] = new AssetManager(150, 400 / 2, 300, 30, "mycanvas");
+    this.coins[15] = new AssetManager(625, 400 / 2, 300, 30, "mycanvas");
+
+
 
     this.jsonLoader = new JsonLoader();
     this.jsonLoader.loadJSON("Data");
@@ -35,8 +51,9 @@ class Game
 
     // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
     //this.AssetManager.setSpriteSheet(true, 3, 10);
-    this.coins[0].setSpriteSheet(true, 3, 10);
-    this.coins[1].setSpriteSheet(true, 3, 10);
+    this.coins.forEach(coin => {
+      coin.setSpriteSheet(true, 3, 10);
+    })
 
      //gameNs.world = this.world
     // gameNs.b2DebugDraw = this.b2DebugDraw
@@ -100,8 +117,9 @@ class Game
     }
 
     //gameNs.game.AssetManager.update();
-    this.coins[0].update();
-    this.coins[1].update();
+    this.coins.forEach(coin => {
+      coin.update();
+    })
     //window.requestAnimationFrame(gameNs.game.update);
 
     this.world.Step(
@@ -128,8 +146,9 @@ class Game
 
     document.body.style.background = "#ffffff";
     //this.AssetManager.draw();
-    this.coins[0].draw();
-    this.coins[1].draw();
+    this.coins.forEach(coin => {
+      coin.draw();
+    })
     //debugger
 
 

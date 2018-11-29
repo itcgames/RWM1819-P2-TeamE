@@ -22,8 +22,11 @@ class JsonLoader
 
       //  Images.
       //gameNs.game.backgroundImage = new Image();
-      gameNs.game.coins[0].load(assets.Images[0].path);
-      gameNs.game.coins[1].load(assets.Images[0].path);
+      //gameNs.game.coins[0].load(assets.Images[0].path);
+      //gameNs.game.coins[1].load(assets.Images[0].path);
+      gameNs.game.coins.forEach(coin => {
+        coin.load(assets.Images[0].path);
+      })
     }
   }
 
