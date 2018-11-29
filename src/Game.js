@@ -36,12 +36,13 @@ class Game
      debugDraw.SetFlags(this.b2DebugDraw.e_shapeBit | this.b2DebugDraw.e_jointBit);
      this.world.SetDebugDraw(debugDraw);
 
-     this.audioManager = new AudioManager();
+     //this.audioManager = new AudioManager();
 
 	    for(var i = 0; i < 400; i++)
     		{
     			snw[i] = new snow();
-    		}
+      }
+      this.tip = new tip();
 
   }
     /**
@@ -70,7 +71,10 @@ class Game
 
       //this.gestureManager.resetDetection()
 
-    }
+      }
+
+      
+      
 
     //this.AssetManager.update();
     //window.requestAnimationFrame(gameNs.game.update);
@@ -88,7 +92,9 @@ class Game
 				{
 					snw[k].update();
 					snw[k].draw();
-				}
+      }
+
+      this.tip.update();
   }
 
   render()
@@ -98,8 +104,8 @@ class Game
     var ctx = canvas.getContext("2d");
 
     document.body.style.background = "#ffffff";
-    //this.AssetManager.draw();
-
+      //this.AssetManager.draw();
+      this.tip.draw(ctx);
 
 
     //window.setInterval(this.update, 1000 / 60);
