@@ -16,17 +16,14 @@ class Game
            new b2Vec2(0, 10)    //gravity
         ,  true                 //allow sleep
      );
-     //this.AssetManager = new AssetManager(window.innerWidth / 2, window.innerHeight / 2, 2000, 500, "mycanvas");
-    this.AssetManager = new AssetManager(100, 100 / 2, 1000, 100, "mycanvas");
+    // this.AssetManager = new AssetManager(200, 200, 500, 250, "mycanvas");
+     gameNs.world = this.world
+     gameNs.b2DebugDraw = this.b2DebugDraw
+    // constructor(x,y,world,bodyType, shapeType, width,height)
+    //between 0 and 3.2 for whatever reason for x and y
+   
+    this.shape = new Shape(1.5, 1,this.world, "dynamic", "circle", 1,1);
 
-    // Load your image from path.
-    this.AssetManager.load("resources/img/coin.png");
-    // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
-    this.AssetManager.setSpriteSheet(true, 3, 10);
-
-     //gameNs.world = this.world
-    // gameNs.b2DebugDraw = this.b2DebugDraw
-     this.shape = new Shape(10,10,this.world)
      //this.line = new Line(10, 10,10, this.world)
      this.gestureManager = new GestureManager()
      this.startingPosition = []
@@ -42,23 +39,11 @@ class Game
 
      ///this.audioManager = new AudioManager();
 
-     var that = this;
-   for(var i = 0; i < 400; i++)
-        {
-          snw[i] = new snow();
-        }
-
-      var clearButton = document.getElementById("clearBodies");
-          clearButton.addEventListener("touchend", function()
-          {
-            that.shape.clearEverything();
-          });
-      var clearLastButton = document.getElementById("clearLast");
-      clearLastButton.addEventListener("touchend", function()
-          {
-            that.shape.clearLastDrawn();
-          });
-
+	    for(var i = 0; i < 400; i++)
+    		{
+    			snw[i] = new snow();
+    		}
+        this.cam = new Camera();
   }
     /**
   * initWorld
@@ -83,12 +68,11 @@ class Game
       this.startingPosition[1] = this.startingPosition[1] / 30
       console.log(this.startingPosition)
       this.line = new Line(this.startingPosition[0], this.startingPosition[1],10, this.world)
-
-      this.gestureManager.resetDetection()
+      //this.gestureManager.resetDetection()
 
     }
 
-    gameNs.game.AssetManager.update();
+    //this.AssetManager.update();
     //window.requestAnimationFrame(gameNs.game.update);
 
     this.world.Step(
@@ -98,7 +82,6 @@ class Game
     );
     this.world.DrawDebugData();
     this.world.ClearForces();
-
     //this.render();
 	for(var k = 0; k < snw.length; k++)
 				{
@@ -114,7 +97,8 @@ class Game
     var ctx = canvas.getContext("2d");
 
     document.body.style.background = "#ffffff";
-    this.AssetManager.draw();
+    //this.AssetManager.draw();
+    this.cam.update(this.shape.getX(), this.shape.getY());
 
 
 
