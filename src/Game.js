@@ -32,7 +32,7 @@ class Game
      this.world.SetDebugDraw(debugDraw);
 
      this.audioManager = new AudioManager();
-	 for(var i = 0; i < 400; i++)
+	    for(var i = 0; i < 400; i++)
     		{
     			snw[i] = new snow();
     		}
