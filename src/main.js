@@ -6,6 +6,7 @@
 	* Gesture Manager
 	*/
 var gameNs = {};
+var app = {};
 
 function main(){
 	initCanvas();
@@ -30,7 +31,7 @@ function initCanvas(){
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	// We want this to be a 2D canvas.
-	var ctx = canvas.getContext("2d");
+	app.ctx = canvas.getContext("2d");
 	// Adds the canvas element to the document.
 	document.body.appendChild(canvas);
 }

@@ -1,3 +1,7 @@
+var snw = [];
+var cam;
+
+
 class Game
 {
   constructor(title)
@@ -26,6 +30,12 @@ class Game
      debugDraw.SetLineThickness(1.0);
      debugDraw.SetFlags(gameNs.b2DebugDraw.e_shapeBit | gameNs.b2DebugDraw.e_jointBit);
      gameNs.world.SetDebugDraw(debugDraw);
+
+	 for(var i = 0; i < 400; i++)
+    		{
+    			snw[i] = new snow();
+    		}
+
   }
     /**
   * initWorld
@@ -52,6 +62,8 @@ class Game
       this.line = new Line(this.startingPosition[0], this.startingPosition[1],10, this.world)
 
       this.gestureManager.resetDetection()
+
+
     }
 
     gameNs.world.Step(
@@ -63,6 +75,11 @@ class Game
     gameNs.world.ClearForces();
 
     //this.render();
+	for(var k = 0; k < snw.length; k++)
+				{
+					snw[k].update();
+					snw[k].draw();
+				}
   }
 
   render()
