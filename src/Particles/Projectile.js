@@ -19,7 +19,7 @@
    /*
     *
     */
-   constructor(canvas, context)
+   constructor()
    {
      this.x = 100; // Set to 0 for applying velocity to X
                    // Set to 300 for applying velocity to Y
@@ -52,8 +52,8 @@
      this.applyGravity = false; // Applies gravity when true, but set to false
      this.applyFric = false;
 
-     this.canvas = canvas;
-     this.context = context;
+     this.canvas = document.getElementById("mycanvas");
+     this.context = document.getElementById("mycanvas").getContext("2D");
    }
 
    /*
