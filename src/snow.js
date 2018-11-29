@@ -11,8 +11,7 @@ function snow()
 	this.direction = (Math.random() * 3) + 1;
 	///update Function
 	this.update = function()
-	{
-		
+	{		
 		///check for direction and update positions and speed 
 		if(this.direction > 2 && this.direction < 3)
 		{

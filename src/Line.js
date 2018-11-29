@@ -24,6 +24,7 @@ class Line
     bodyDef.position.x = x;
     bodyDef.position.y = y;
     world.CreateBody(bodyDef).CreateFixture(fixDef);
+    destroy.push(bodyDef);
   }
 
   update()

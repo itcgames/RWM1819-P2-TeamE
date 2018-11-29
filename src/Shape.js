@@ -1,3 +1,6 @@
+var destroy = [];
+
+
 class Shape
 {
   constructor(x,y,world)
@@ -42,6 +45,7 @@ class Shape
        bodyDef.position.x = Math.random() * 10;
        bodyDef.position.y = Math.random() * 10;
        world.CreateBody(bodyDef).CreateFixture(fixDef);
+       destroy.push(bodyDef);
      }
   }
 
@@ -53,5 +57,22 @@ class Shape
   draw()
   {
 
+  }
+  ///Erase all rigidbodies on screen
+  clearEverything()
+  {
+    var count = gameNs.world.GetBodyCount();
+    console.log(count);
+
+    for(var i in destroy)
+    {
+      gameNs.world.DestroyBody(destroy[i]);
+    }
+
+
+  }
+  clearLastDrawn()
+  {
+    //erase last drawn line(can be continious until none remain)
   }
 }

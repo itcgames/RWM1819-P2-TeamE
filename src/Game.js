@@ -31,10 +31,22 @@ class Game
      debugDraw.SetFlags(gameNs.b2DebugDraw.e_shapeBit | gameNs.b2DebugDraw.e_jointBit);
      gameNs.world.SetDebugDraw(debugDraw);
 
-	 for(var i = 0; i < 400; i++)
-    		{
-    			snw[i] = new snow();
-    		}
+     var that = this;
+   for(var i = 0; i < 400; i++)
+        {
+          snw[i] = new snow();
+        }
+
+      var clearButton = document.getElementById("clearBodies");
+          clearButton.addEventListener("touchstart", function()
+          {
+            that.shape.clearEverything();
+          });
+      var clearLastButton = document.getElementById("clearLast");
+      clearLastButton.addEventListener("touchstart", function()
+          {
+            that.shape.clearLastDrawn();
+          });
 
   }
     /**
