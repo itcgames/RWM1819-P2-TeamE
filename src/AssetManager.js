@@ -8,29 +8,18 @@
  */
 class  AssetManager{
 
-    constructor (x, y, width, height, canvas)
+    constructor (width, height)
     {
-        AssetManager.image = new Image(width, height);
-        AssetManager.imgdead = new Image(10,10);
-        AssetManager.x = x;
-        AssetManager.y = y;
-        AssetManager.width = width;
-        AssetManager.height = height;
-        AssetManager.canvas = canvas;
-
-        AssetManager.spriteSheet = false;
-        AssetManager.frameIndex = 0;
-        AssetManager.tickCount = 0;
-        AssetManager.ticksPerFrame = 0;
-        AssetManager.numberPerFrame = 1;
-        AssetManager.loop = true;
+        this.image = new Image(width, height);
+        this.width = width;
+        this.height = height;
 
     }
 
     /**
      * Draw function for the Image.
      */
-    draw() {
+  /*  draw() {
         var canvas = document.getElementById(AssetManager.canvas);
         var context = canvas.getContext('2d');
          if(!AssetManager.spriteSheet){
@@ -50,7 +39,7 @@ class  AssetManager{
                 AssetManager.width / AssetManager.numberPerFrame ,
                 AssetManager.height);
          }
-    }
+    }*/
 
     /**
      * Load The Image.
@@ -73,7 +62,7 @@ class  AssetManager{
         AssetManager.height = height;
     }
 
-    update() {
+    /*update() {
       AssetManager.tickCount += 1;
 
         if(AssetManager.tickCount > AssetManager.ticksPerFrame)
@@ -90,18 +79,18 @@ class  AssetManager{
             }
         }
 
-}
+}*/
 
     /**
      * set Sprite sheet function for animations.
      */
-    setSpriteSheet(spriteSheet, ticksperframe, numberperframe) {
+  /*  setSpriteSheet(spriteSheet, ticksperframe, numberperframe) {
         AssetManager.spriteSheet = spriteSheet;
         AssetManager.frameIndex = 0;
         AssetManager.tickCount = 0;
         AssetManager.ticksPerFrame = ticksperframe;
         AssetManager.numberPerFrame = numberperframe;
 
-    }
+    }*/
 
 }
