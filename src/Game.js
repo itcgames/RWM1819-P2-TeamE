@@ -14,9 +14,11 @@ class Game
     this.b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
     this.playImage = new Image()
     this.playImage.src = "resources/img/playBtn.png";
+    this.stopImage = new Image()
+    this.stopImage.src = "resources/img/stopBtn.png";
     this.world = new b2World(
           new b2Vec2(0, this.gravity)    //gravity
-       ,  true                 //allow sleep
+       ,  false                 //allow sleep
     );
 
 
@@ -80,15 +82,39 @@ class Game
   update()
   {
 
+    if (this.gestureManager.getOnePointDetection())
+    {
+      this.startingPosition = this.gestureManager.getTouchPosition()
+      this.realPosition = this.gestureManager.getTouchPosition()
+      this.startingPosition[0] = this.startingPosition[0] / 30
+      this.startingPosition[1] = this.startingPosition[1] / 30
 
+
+      //this.gestureManager.resetDetection()
+
+    }
+
+
+    if (this.checkCollisionBetween(50, 450, 100, 100))
+    {
+      this.startGame = true
+    }
+    if (this.checkCollisionBetween(200, 450, 100, 100))
+    {
+      this.shape.setPosition(1.5,2.2)
+      this.startGame = false
+    }
     //this.AssetManager.update();
     //window.requestAnimationFrame(gameNs.game.update);
+    if (this.startGame === true)
+    {
+      this.world.Step(
+            1 / 60  //frame-rate
+         ,  10       //velocity iterations
+         ,  10       //position iterations
+      );
+    }
 
-    this.world.Step(
-          1 / 60  //frame-rate
-       ,  10       //velocity iterations
-       ,  10       //position iterations
-    );
     this.world.DrawDebugData();
     this.world.ClearForces();
 
@@ -106,6 +132,7 @@ class Game
     var canvas = document.getElementById("mycanvas");
     var ctx = canvas.getContext("2d");
     ctx.drawImage(this.playImage,50, 450, 100, 100);
+    ctx.drawImage(this.stopImage,200, 450, 100, 100);
     document.body.style.background = "#ffffff";
     //this.AssetManager.draw();
 
