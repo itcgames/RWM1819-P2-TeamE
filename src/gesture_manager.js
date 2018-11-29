@@ -88,6 +88,8 @@ class GestureManager
 
     this.swipeDetected = false
     this.moving = false
+
+    this.oneTouch = false
   }
   resetDetection(){
     this.oneTouch = false;

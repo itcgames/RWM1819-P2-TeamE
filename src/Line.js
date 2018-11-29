@@ -19,8 +19,8 @@ class Line
 
     bodyDef.type = b2Body.b2_staticBody;
 
-    fixDef.shape = new b2PolygonShape;
-    fixDef.shape.SetAsBox(5, .1);
+    fixDef.shape = new  b2CircleShape(.2);
+  //  fixDef.shape.SetAsBox(.3, .1);
     bodyDef.position.x = x;
     bodyDef.position.y = y;
     world.CreateBody(bodyDef).CreateFixture(fixDef);

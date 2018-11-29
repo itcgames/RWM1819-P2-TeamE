@@ -34,9 +34,7 @@ class  AssetManager{
         var canvas = document.getElementById(AssetManager.canvas);
         var context = canvas.getContext('2d');
          if(!AssetManager.spriteSheet){
-            context.drawImage(AssetManager.image, 0, AssetManager.width,
-              AssetManager.height, AssetManager.x, AssetManager.y,
-               AssetManager.width, AssetManager.height);
+            context.drawImage(AssetManager.image, AssetManager.x, AssetManager.y, AssetManager.width, AssetManager.height);
          }
          else{
             context.drawImage(

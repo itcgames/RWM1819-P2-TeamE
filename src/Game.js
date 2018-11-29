@@ -71,11 +71,11 @@ class Game
       console.log(this.startingPosition)
       this.line = new Line(this.startingPosition[0], this.startingPosition[1],10, this.world)
 
-      this.gestureManager.resetDetection()
+      //this.gestureManager.resetDetection()
 
     }
 
-    gameNs.game.AssetManager.update();
+    this.AssetManager.update();
     //window.requestAnimationFrame(gameNs.game.update);
 
     this.world.Step(
