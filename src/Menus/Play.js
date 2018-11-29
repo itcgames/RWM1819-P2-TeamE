@@ -16,13 +16,18 @@ class Play
       gameNs.highScore = new HighScore("highScore")
       gameNs.menu = new MenuScene("Menu")
       gameNs.game = new Game("game")
+      gameNs.tutorial = new TutorialScene("tutorial")
+      gameNs.coinDropGame = new CoinDropGame("coinDropGame")
 
       gameNs.sceneManager.addScene(gameNs.titleScene);
       gameNs.sceneManager.addScene(gameNs.menu);
       gameNs.sceneManager.addScene(gameNs.game);
       gameNs.sceneManager.addScene(gameNs.help);
       gameNs.sceneManager.addScene(gameNs.highScore);
-      gameNs.sceneManager.goToScene(gameNs.menu.title);
+      gameNs.sceneManager.addScene(gameNs.tutorial);
+      gameNs.sceneManager.addScene(gameNs.coinDropGame)
+      gameNs.sceneManager.goToScene(gameNs.coinDropGame.title);
+
       this.update = this.update.bind(this);
   }
 

@@ -67,8 +67,7 @@ class MenuScene
      }
    return collides;
  }
-
-
+    
 /**
   * creates a canvas and context
   * changes the color of the background to green
@@ -91,6 +90,4 @@ class MenuScene
 
     //ctx.fillText(this.title, 100,100);
   }
-
-
 }
