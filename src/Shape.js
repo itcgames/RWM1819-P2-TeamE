@@ -1,7 +1,8 @@
 class Shape
 {
-  constructor(x,y,world,bodyType, shapeType, width,height)
+  constructor(x,y,world,bodyType, shapeType, width,height,density, friction, restitution)
   {
+    this.world = world
     //
     // var fixDef = new b2FixtureDef;
     // fixDef.density = 1.0;
@@ -45,31 +46,50 @@ class Shape
     var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape
   	var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape
 
-    var myBodyDef = new b2BodyDef;
-    var myFixtureDef = new b2FixtureDef;
+    this.myBodyDef = new b2BodyDef;
+    this.myFixtureDef = new b2FixtureDef;
+    
+    this.myFixtureDef.density = density;
+    this.myFixtureDef.friction = friction;
+    this.myFixtureDef.restitution = restitution;
+
+
+
+    this.box2DVec = Box2D.Common.Math.b2Vec2;
 
     if(bodyType === "dynamic")
     {
-      myBodyDef.type = b2Body.b2_dynamicBody;
+      this.myBodyDef.type = b2Body.b2_dynamicBody;
     }
     else if(bodyType === "static")
     {
-      is.myBodyDef.type = b2Body.b2_staticBody;
+      this.myBodyDef.type = b2Body.b2_staticBody;
     }
 
     if(shapeType === "circle")
     {
-      myFixtureDef.shape  = new b2CircleShape(width + 0.1);
+
+      this.myFixtureDef.shape  = new b2CircleShape(width);
     }
     else if(shapeType === "square")
     {
-      myFixtureDef.shape = new b2PolygonShape(width + 0.1 ,height + 0.1);
+      this.myFixtureDef.shape = new b2PolygonShape;
+      this.myFixtureDef.shape.SetAsBox(width, height);
     }
 
-    myBodyDef.position.x = x * 10;
-    myBodyDef.position.y = y * 10;
+    this.myBodyDef.position.x = x //* 10;
+    this.myBodyDef.position.y = y //* 10;
 
-    world.CreateBody(myBodyDef).CreateFixture(myFixtureDef);
+    this.body = this.world.CreateBody(this.myBodyDef);
+
+    this.body.CreateFixture(this.myFixtureDef);
+  }
+
+  setPosition(x, y)
+  {
+
+    this.body.SetPosition(new this.box2DVec(x,y));
+    //this.world.CreateBody(this.myBodyDef).CreateFixture(this.myFixtureDef);
   }
 
   update()

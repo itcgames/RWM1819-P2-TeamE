@@ -19,6 +19,9 @@ class TitleScene
     this.gestureManager.init()
     this.currentTime = null
     this.newTime = null
+    this.image = new Image()
+
+    this.image.src = "resources/img/title.png"
 
   }
 
@@ -28,7 +31,7 @@ class TitleScene
     this.currentTime = this.newTime - this.timeOne
 
 
-    if(this.currentTime > 3000)
+    if(this.currentTime > 5000)
     {
         this.ChangeScene()
     }
@@ -49,7 +52,10 @@ class TitleScene
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
     ctx.font = '100px serif'; //48
 
-    ctx.fillText(this.title, 100,100);
+    ctx.drawImage(this.image,250, 50, 500, 500);
+
+  //  ctx.fillText(this.title, 100,100);
+
   }
 
 }
