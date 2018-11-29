@@ -19,15 +19,15 @@ class Game
        ,  true                 //allow sleep
     );
 
-    this.shape = new Shape(1.5,2.2,this.world, "dynamic", "circle", 1,1);
+
     // this.AssetManager = new AssetManager(200, 200, 500, 250, "mycanvas");
      gameNs.world = this.world
      gameNs.b2DebugDraw = this.b2DebugDraw
-    // constructor(x,y,world,bodyType, shapeType, width,height)
+    // constructor(x,y,world,bodyType, shapeType, width,height,density,friction,restitution)
     //between 0 and 3.2 for whatever reason for x and y
+    this.shape = new Shape(11,2.2,this.world, "dynamic", "circle", 1,1,0.5,0.5,0.2);
+  //  this.shape = new Shape(15,2.2,this.world, "dynamic", "square", 1,1,0.5,0.5,0.2);
 
-
-     //this.line = new Line(10, 10,10, this.world)
      this.gestureManager = new GestureManager()
      this.startingPosition = []
      this.realPosition = []
@@ -79,19 +79,7 @@ class Game
  */
   update()
   {
-    if (this.gestureManager.getOnePointDetection())
-    {
-      this.startingPosition = this.gestureManager.getTouchPosition()
-      this.realPosition = this.gestureManager.getTouchPosition()
-      this.startingPosition[0] = this.startingPosition[0] / 30
-      this.startingPosition[1] = this.startingPosition[1] / 30
-      console.log(this.startingPosition)
-      this.line = new Line(this.startingPosition[0], this.startingPosition[1],10, this.world)
 
-      //this.gestureManager.resetDetection()
-
-    }
-  
 
     //this.AssetManager.update();
     //window.requestAnimationFrame(gameNs.game.update);

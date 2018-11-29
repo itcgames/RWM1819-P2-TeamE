@@ -4,6 +4,10 @@ class GestureManager
     this.lastX = null;
     this.lastY = null;
     this.moving = false
+    this.currentX = null
+    this.currentY = null
+    this.startX = null
+    this.startY = null
     this.endX = null
     this.endY = null
     this.timeout = null;
@@ -14,6 +18,7 @@ class GestureManager
     this.oneTouch = false;
     this.swipeDetected = false;
     this.direction = null;
+    this.modeDraw = true;
   }
   init(){
     document.addEventListener("touchstart", this.onTouchStart.bind(this), {passive:false});
@@ -34,6 +39,8 @@ class GestureManager
     this.lastX =  startX
     this.lastY =  startY
 
+    this.startX = startX;
+    this.startY = startY;
   }
 
   onTouchMove(e){
@@ -42,6 +49,11 @@ class GestureManager
 
     var xUp = this.touches[0].clientX
     var yUp = this.touches[0].clientY
+
+    if(this.modeDraw === true)
+    {
+        this.line = new Line(this.touches[0].clientX/30, this.touches[0].clientY/30, gameNs.world,1.0,1,1.0,0.5,0.1)
+    }
 
     this.moving = true
 
@@ -106,9 +118,17 @@ class GestureManager
   getDirection(){
     return this.direction;
   }
+  getStartTouchPosition()
+  {
+    return[this.startX, this.startY];
+  }
   getMovement()
   {
     return this.moving
+  }
+  getCurrentPos()
+  {
+    return[this.currentX, this.currentY];
   }
   getTouchPosition()
   {

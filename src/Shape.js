@@ -1,6 +1,6 @@
 class Shape
 {
-  constructor(x,y,world,bodyType, shapeType, width,height)
+  constructor(x,y,world,bodyType, shapeType, width,height,density, friction, restitution)
   {
     //
     // var fixDef = new b2FixtureDef;
@@ -48,6 +48,10 @@ class Shape
     var myBodyDef = new b2BodyDef;
     var myFixtureDef = new b2FixtureDef;
 
+    myFixtureDef.density = density;
+    myFixtureDef.friction = friction;
+    myFixtureDef.restitution = restitution;
+
     if(bodyType === "dynamic")
     {
       myBodyDef.type = b2Body.b2_dynamicBody;
@@ -59,11 +63,12 @@ class Shape
 
     if(shapeType === "circle")
     {
-      myFixtureDef.shape  = new b2CircleShape(width + 0.1);
+      myFixtureDef.shape  = new b2CircleShape(width);
     }
     else if(shapeType === "square")
     {
-      myFixtureDef.shape = new b2PolygonShape(width + 0.1 ,height + 0.1);
+      myFixtureDef.shape = new b2PolygonShape;
+      myFixtureDef.shape.SetAsBox(width, height);
     }
 
     myBodyDef.position.x = x //* 10;
