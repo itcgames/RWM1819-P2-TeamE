@@ -15,27 +15,49 @@ class TitleScene
   {
     this.title = title
     this.gestureManager = new GestureManager()
+    this.timeOne = new Date().getTime()
+    this.gestureManager.init()
+    this.currentTime = null
+    this.newTime = null
+
   }
 
   initWorld()
   {
     console.log("Initialising game world");
-    this.gestureManager.init()
-    this.update = this.update.bind(this);
+
+    //this.update = this.update.bind(this);
+
   }
 
   update()
   {
+    this.newTime = new Date().getTime()
+    //console.log(this.timeOne)
+    this.currentTime = this.newTime - this.timeOne
+    console.log(this.currentTime)
+      //gameNs.sceneManager.goToScene(gameNs.menu.title)
+
+    if(this.currentTime > 3000)
+    {
+        this.ChangeScene()
+    }
     if (this.gestureManager.getOnePointDetection())
     {
-      gameNs.sceneManager.goToScene(gameNs.menu.title)
+    //  gameNs.sceneManager.goToScene(gameNs.menu.title)
       //gameNs.sceneManager.render()
-      this.gestureManager.resetDetection()
+  //    this.gestureManager.resetDetection()
     }
 
-
+  //  console.log(this.timeOne)
     //this.render()
   }
+
+  ChangeScene()
+  {
+    gameNs.sceneManager.goToScene(gameNs.menu.title)
+  }
+
 
   render()
   {

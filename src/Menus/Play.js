@@ -11,7 +11,7 @@ class Play
   initWorld()
   {
       gameNs.sceneManager = new SceneManager();
-      gameNs.titleScene = new MenuScene("Title")
+      gameNs.titleScene = new TitleScene("Title")
       gameNs.menu = new MenuScene("Menu")
       gameNs.game = new Game("game")
 

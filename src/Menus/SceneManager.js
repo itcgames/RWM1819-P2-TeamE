@@ -80,6 +80,7 @@ class SceneManager
   update()
   {
     this.currentScene.update()
+    //console.log(this.currentScene)
   }
 
   /**

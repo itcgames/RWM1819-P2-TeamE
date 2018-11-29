@@ -21,7 +21,7 @@ class MenuScene
   {
     if (this.gestureManager.getOnePointDetection())
     {
-      gameNs.sceneManager.goToScene(gameNs.game.title)
+      //gameNs.sceneManager.goToScene(gameNs.game.title)
       //gameNs.sceneManager.render()
       this.gestureManager.resetDetection()
     }
@@ -58,6 +58,6 @@ class MenuScene
 
     ctx.fillText(this.title, 100,100);
   }
-  
+
 
 }
