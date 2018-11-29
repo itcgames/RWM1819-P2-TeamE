@@ -1,3 +1,9 @@
 [submodule "lib/RWM1819-Audio-A"]
 	path = lib/RWM1819-Audio-A
 	url = https://github.com/itcgames/RWM1819-Audio-A.git
+[submodule "lib/RWM1819-Scoreboard-A"]
+	path = lib/RWM1819-Scoreboard-A
+	url = https://github.com/itcgames/RWM1819-Scoreboard-A
+[submodule "lib/RWM1819-Gesture-A"]
+	path = lib/RWM1819-Gesture-A
+	url = https://github.com/itcgames/RWM1819-Gesture-A
