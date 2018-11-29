@@ -1,13 +1,18 @@
 var snw = [];
 var cam;
 
+var coins = [];
+
 
 class Game
 {
   constructor(title)
   {
     //this.AssetManager = new AssetManager(window.innerWidth / 2, window.innerHeight / 2, 2000, 500, "mycanvas");
-   this.AssetManager = new AssetManager(100, 100 / 2, 1000, 100, "mycanvas");
+    this.AssetManager = new AssetManager(100, 400 / 2, 300, 30, "mycanvas");
+
+    coins[0] = new AssetManager(100, 200 / 2, 300, 30, "mycanvas");
+    coins[1] = new AssetManager(600, 500 / 2, 300, 30, "mycanvas");
 
     this.jsonLoader = new JsonLoader();
     this.jsonLoader.loadJSON("Data");
@@ -29,6 +34,8 @@ class Game
     // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
     this.AssetManager.setSpriteSheet(true, 3, 10);
 
+    coins[0].setSpriteSheet(true, 3, 10);
+    coins[1].setSpriteSheet(true, 3, 10);
      //gameNs.world = this.world
     // gameNs.b2DebugDraw = this.b2DebugDraw
      this.shape = new Shape(10,10,this.world)
@@ -84,6 +91,8 @@ class Game
     }
 
     gameNs.game.AssetManager.update();
+    coins[0].update();
+    coins[1].update();
     //window.requestAnimationFrame(gameNs.game.update);
 
     this.world.Step(
@@ -110,6 +119,9 @@ class Game
 
     document.body.style.background = "#ffffff";
     this.AssetManager.draw();
+    coins[0].draw();
+    //debugger
+    coins[1].draw();
 
 
 
