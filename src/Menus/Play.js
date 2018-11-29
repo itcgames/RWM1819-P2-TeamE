@@ -18,7 +18,8 @@ class Play
       gameNs.sceneManager.addScene(gameNs.titleScene);
       gameNs.sceneManager.addScene(gameNs.menu);
       gameNs.sceneManager.addScene(gameNs.game);
-      gameNs.sceneManager.goToScene(gameNs.titleScene.title);
+      gameNs.sceneManager.goToScene(gameNs.game.title);
+      this.update = this.update.bind(this);
   }
 
   /**
