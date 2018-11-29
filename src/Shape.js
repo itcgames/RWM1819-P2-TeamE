@@ -66,8 +66,8 @@ class Shape
       myFixtureDef.shape = new b2PolygonShape(width + 0.1 ,height + 0.1);
     }
 
-    myBodyDef.position.x = x * 10;
-    myBodyDef.position.y = y * 10;
+    myBodyDef.position.x = x //* 10;
+    myBodyDef.position.y = y //* 10;
 
     world.CreateBody(myBodyDef).CreateFixture(myFixtureDef);
   }
