@@ -6,6 +6,7 @@ class Game
 {
   constructor(title)
   {
+
     this.title = title
     var b2Vec2 = Box2D.Common.Math.b2Vec2
     var b2World = Box2D.Dynamics.b2World
@@ -15,6 +16,14 @@ class Game
            new b2Vec2(0, 10)    //gravity
         ,  true                 //allow sleep
      );
+     //this.AssetManager = new AssetManager(window.innerWidth / 2, window.innerHeight / 2, 2000, 500, "mycanvas");
+    this.AssetManager = new AssetManager(100, 100 / 2, 1000, 100, "mycanvas");
+
+    // Load your image from path.
+    this.AssetManager.load("resources/img/coin.png");
+    // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
+    this.AssetManager.setSpriteSheet(true, 3, 10);
+
      //gameNs.world = this.world
     // gameNs.b2DebugDraw = this.b2DebugDraw
      this.shape = new Shape(10,10,this.world)
@@ -64,8 +73,10 @@ class Game
 
       this.gestureManager.resetDetection()
 
-
     }
+
+    gameNs.game.AssetManager.update();
+    //window.requestAnimationFrame(gameNs.game.update);
 
     this.world.Step(
           1 / 60  //frame-rate
@@ -90,6 +101,9 @@ class Game
     var ctx = canvas.getContext("2d");
 
     document.body.style.background = "#ffffff";
+    this.AssetManager.draw();
+
+
 
     //window.setInterval(this.update, 1000 / 60);
   //  ctx.clearRect(0,0,canvas.width,canvas.height);

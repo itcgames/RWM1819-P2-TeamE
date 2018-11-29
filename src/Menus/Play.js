@@ -1,6 +1,6 @@
 class Play
 {
-  constructor(title)
+  constructor()
   {
 
   }
