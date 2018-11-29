@@ -8,89 +8,97 @@
  */
 class  AssetManager{
 
-    constructor (width, height)
+    constructor (x,y,width, height, canvas)
     {
         this.image = new Image(width, height);
         this.width = width;
         this.height = height;
+        this.x = x;
+        this.y = y;
+        this.canvas = canvas;
+
+        this.spriteSheet = false;
+        this.frameIndex = 0;
+        this.tickCount = 0;
+        this.ticksPerFrame = 0;
+        this.numberPerFrame = 1;
+        this.loop = true;
 
     }
 
     /**
      * Draw function for the Image.
      */
-  /*  draw() {
-        var canvas = document.getElementById(AssetManager.canvas);
-        var context = canvas.getContext('2d');
-         if(!AssetManager.spriteSheet){
-            context.drawImage(AssetManager.image, 0, AssetManager.width,
-              AssetManager.height, AssetManager.x, AssetManager.y,
-               AssetManager.width, AssetManager.height);
+    draw() {
+         if(!this.spriteSheet){
+            	/*app.ctx.drawImage(this.image, 0, this.width,
+              this.height, this.x, this.y,
+               this.width, this.height);*/
          }
          else{
-            context.drawImage(
-                AssetManager.image,
-                AssetManager.frameIndex * AssetManager.width / AssetManager.numberPerFrame,
+            	app.ctx.drawImage(
+                this.image,
+                this.frameIndex * this.width / this.numberPerFrame,
                 0,
-                AssetManager.width / AssetManager.numberPerFrame,
-                AssetManager.height,
-                AssetManager.x,
-                AssetManager.y,
-                AssetManager.width / AssetManager.numberPerFrame ,
-                AssetManager.height);
+                this.width / this.numberPerFrame,
+                this.height,
+                this.x,
+                this.y,
+                this.width / this.numberPerFrame ,
+                this.height);
          }
-    }*/
+    }
 
     /**
      * Load The Image.
      * Must be called before draw.
      */
     load(path) {
-        AssetManager.image.src = path;
+        this.image.src = path;
     }
 
     setPos(x, y) {
-        AssetManager.x = x;
-        AssetManager.y = y;
+        this.x = x;
+        this.y = y;
     }
 
     setWidth(width) {
-        AssetManager.width = width;
+        this.width = width;
     }
 
     setHeight(height) {
-        AssetManager.height = height;
+        this.height = height;
     }
 
-    /*update() {
-      AssetManager.tickCount += 1;
+    update() {
+      this.tickCount += 1;
 
-        if(AssetManager.tickCount > AssetManager.ticksPerFrame)
+        if(this.tickCount > this.ticksPerFrame)
         {
-            AssetManager.tickCount = 0;
+            this.tickCount = 0;
 
-            if( AssetManager.frameIndex < AssetManager.numberPerFrame -1)
+            if( this.frameIndex < this.numberPerFrame -1)
             {
-                AssetManager.frameIndex += 1 ;
+                this.frameIndex += 1 ;
             }
-            else if ( AssetManager.loop)
+            else if ( this.loop)
             {
-                AssetManager.frameIndex = 0;
+                this.frameIndex = 0;
             }
         }
 
-}*/
+}
 
     /**
      * set Sprite sheet function for animations.
      */
-  /*  setSpriteSheet(spriteSheet, ticksperframe, numberperframe) {
-        AssetManager.spriteSheet = spriteSheet;
-        AssetManager.frameIndex = 0;
-        AssetManager.tickCount = 0;
-        AssetManager.ticksPerFrame = ticksperframe;
-        AssetManager.numberPerFrame = numberperframe;
+    setSpriteSheet(spriteSheet, ticksperframe, numberperframe) {
+        this.spriteSheet = spriteSheet;
+        this.frameIndex = 0;
+        this.tickCount = 0;
+        this.ticksPerFrame = ticksperframe;
+        this.numberPerFrame = numberperframe;
 
-    }*/
+    }
 
 }

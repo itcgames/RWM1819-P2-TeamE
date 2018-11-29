@@ -9,10 +9,10 @@ class Game
   constructor(title)
   {
     //this.AssetManager = new AssetManager(window.innerWidth / 2, window.innerHeight / 2, 2000, 500, "mycanvas");
-    this.AssetManager = new AssetManager(300, 30);
-
-    coins[0] = new Coin(100, 200 / 2, "mycanvas");
-    coins[1] = new Coin(600, 500 / 2, "mycanvas");
+    //this.AssetManager = new AssetManager(300, 30);
+    this.coins = [];
+    this.coins[0] = new AssetManager(100, 200 / 2, 300, 30, "mycanvas");
+    this.coins[1] = new AssetManager(600, 500 / 2, 300, 30, "mycanvas");
 
     this.jsonLoader = new JsonLoader();
     this.jsonLoader.loadJSON("Data");
@@ -30,14 +30,13 @@ class Game
 
     // Load your image from path.
     //this.AssetManager.load("resources/img/coin.png");
-    coins[0].setImage(Object.create(this.AssetManager.image));
-    coins[1].setImage(Object.create(this.AssetManager.image));
+    //coins[0].setImage(Object.create(this.AssetManager.image));
+    //coins[1].setImage(Object.create(this.AssetManager.image));
 
     // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
     //this.AssetManager.setSpriteSheet(true, 3, 10);
-
-    coins[0].setSpriteSheet(true, 3, 10);
-    coins[1].setSpriteSheet(true, 3, 10);
+    this.coins[0].setSpriteSheet(true, 3, 10);
+    this.coins[1].setSpriteSheet(true, 3, 10);
 
      //gameNs.world = this.world
     // gameNs.b2DebugDraw = this.b2DebugDraw
@@ -81,14 +80,13 @@ class Game
   {
     if ( gameNs.game.jsonLoader.getLoaded() === true )
     {
-      coins[0].setImage(Object.create(this.AssetManager.image));
-      coins[1].setImage(Object.create(this.AssetManager.image));
+      //coins[0].setImage(Object.create(this.AssetManager.image));
+      //coins[1].setImage(Object.create(this.AssetManager.image));
 
       // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
       //this.AssetManager.setSpriteSheet(true, 3, 10);
 
-      coins[0].setSpriteSheet(true, 3, 10);
-      coins[1].setSpriteSheet(true, 3, 10);
+
     if (this.gestureManager.getOnePointDetection())
     {
       this.startingPosition = this.gestureManager.getTouchPosition()
@@ -102,8 +100,8 @@ class Game
     }
 
     //gameNs.game.AssetManager.update();
-    coins[0].update();
-    coins[1].update();
+    this.coins[0].update();
+    this.coins[1].update();
     //window.requestAnimationFrame(gameNs.game.update);
 
     this.world.Step(
@@ -130,8 +128,8 @@ class Game
 
     document.body.style.background = "#ffffff";
     //this.AssetManager.draw();
-    coins[0].render();
-    coins[1].render();
+    this.coins[0].draw();
+    this.coins[1].draw();
     //debugger
 
 
