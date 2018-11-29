@@ -1,6 +1,12 @@
-// @author Keith Wilson 
-//
+/**
+ * @author Keith Wilson
+ * C00205321
+ * tip class that handles the creation and updating of a tip message
+ */
 
+/**
+ * 
+ */
 function tip()
 {
     this.x = window.innerWidth - (window.innerWidth / 4);
@@ -9,6 +15,8 @@ function tip()
     this.count = 0;
 }
 
+//////
+//updates the message with a new tip every 360 frames
 tip.prototype.update = function ()
 {
     console.log(this.count);
@@ -21,6 +29,8 @@ tip.prototype.update = function ()
     }
 }
 
+//////
+// draws the tip 
 tip.prototype.draw = function (ctx)
 {
     ctx.font = "15px Comic Sans MS";
@@ -29,6 +39,8 @@ tip.prototype.draw = function (ctx)
     ctx.fillText(this.message, this.x, this.y);
 }
 
+//////
+// returns a random tip from an array of tips
 function randomTips()
 {
     var tips = [

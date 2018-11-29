@@ -11,7 +11,7 @@ class SceneManager
  * initialises a dictionary
  * initialises a list
  * initialises the index to -1
- * initialises the number od scenes to -1
+ * initialises the number of scenes to -1
  */
   constructor()
   {
