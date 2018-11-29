@@ -28,13 +28,13 @@ class TitleScene
   {
     if (this.gestureManager.getOnePointDetection())
     {
-      gameNs.sceneManager.goToScene('Menu Scene')
-      gameNs.sceneManager.render()
+      gameNs.sceneManager.goToScene(gameNs.menu.title)
+      //gameNs.sceneManager.render()
       this.gestureManager.resetDetection()
     }
 
-    window.requestAnimationFrame(this.update);
-    this.render()
+
+    //this.render()
   }
 
   render()

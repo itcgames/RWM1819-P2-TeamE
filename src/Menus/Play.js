@@ -11,12 +11,14 @@ class Play
   initWorld()
   {
       gameNs.sceneManager = new SceneManager();
+      gameNs.titleScene = new MenuScene("Title")
       gameNs.menu = new MenuScene("Menu")
       gameNs.game = new Game("game")
 
+      gameNs.sceneManager.addScene(gameNs.titleScene);
       gameNs.sceneManager.addScene(gameNs.menu);
       gameNs.sceneManager.addScene(gameNs.game);
-      gameNs.sceneManager.goToScene(gameNs.menu.title);
+      gameNs.sceneManager.goToScene(gameNs.titleScene.title);
   }
 
   /**
