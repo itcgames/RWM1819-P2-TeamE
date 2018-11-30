@@ -251,7 +251,9 @@ class Game
 
   /*coinCollision()
   {
-    if (this.shape.getPosition().bodyPosX === this.)
+    this.coins.forEach(coin => {
+      this.checkCollisionBetween(coin.getPosX(), coin.getPosY(), this.body.getPositionX)
+    })
   }*/
 
 

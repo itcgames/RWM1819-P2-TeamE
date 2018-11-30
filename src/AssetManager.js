@@ -66,6 +66,16 @@
          this.y = y;
      }
 
+     getPosX()
+     {
+       return this.x;
+     }
+
+     getPosY()
+     {
+       return this.y;
+     }
+
      setWidth(width) {
          this.width = width;
      }
