@@ -76,7 +76,7 @@ class Game
 
      //gameNs.world = this.world
     // gameNs.b2DebugDraw = this.b2DebugDraw
-     this.shape = new Shape(10,10,this.world)
+     //this.shape = new Shape(10,10,this.world)
      //this.line = new Line(10, 10,10, this.world)
      this.gestureManager = new GestureManager()
      this.startingPosition = []
