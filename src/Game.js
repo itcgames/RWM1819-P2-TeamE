@@ -6,6 +6,13 @@ class Game
 {
   constructor(title)
   {
+
+    this.size = 100
+    this.pencilPos = []
+    this.eraserPos = []
+    this.playPos = []
+    this.stopPos = []
+    //this.camera = new Camera()
     this.startGame = false
     this.title = title
     this.gravity = 10
@@ -25,6 +32,7 @@ class Game
        ,  false                 //allow sleep
     );
     this.bodyPosition = []
+    this.playerPosition = []
     gameNs.eraserOn = false
     gameNs.pencilOn = false
 
@@ -114,6 +122,12 @@ class Game
     return collides;
  }
 
+ updatePositions(){
+
+   this.playPos = this.shape.getPosition()
+   console.log(this.playPos)
+ }
+
 
 
   /**
@@ -122,6 +136,15 @@ class Game
  */
   update()
   {
+    console.log(this.shape.getPosition())
+    this.updatePositions()
+
+    //this.camera.update(this.shape.getPosition())
+
+    var playX = this.shape.getPositionX();
+    var playY = this.shape.getPositionY();
+
+    //this.cam.update(playX, playY);
 
     if (this.gestureManager.getOnePointDetection())
     {
@@ -169,6 +192,7 @@ class Game
          ,  10       //velocity iterations
          ,  10       //position iterations
       );
+
     }
 
     this.world.DrawDebugData();
@@ -182,6 +206,8 @@ class Game
       }
 
       this.tip.update();
+      //this.render()
+
   }
 
   erase()
@@ -204,6 +230,7 @@ class Game
       }
     }
 
+
   }
 
 
@@ -214,6 +241,8 @@ class Game
     //setup debug draw
     var canvas = document.getElementById("mycanvas");
     var ctx = canvas.getContext("2d");
+    //ctx.drawImage(this.playImage,this.playPos[0], this.playPos[1], 100, 100);
+
     ctx.drawImage(this.playImage,50, 450, 100, 100);
     ctx.drawImage(this.stopImage,200, 450, 100, 100);
     ctx.drawImage(this.pencilImage,350, 10, 50, 50);

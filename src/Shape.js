@@ -102,10 +102,20 @@ class Shape
 
   getPosition()
   {
-    var bodyPosX = this.myBodyDef.position.x
-    var bodyPosY = this.myBodyDef.position.y
-    return [bodyPosX,  bodyPosY];
+    var bodyPosX = this.body.GetPosition().x * 30
+    var bodyPosY = this.body.GetPosition().x * 30
+    return this.body.GetPosition().x * 30
   }
+
+  getPositionX()
+  {
+    return this.body.GetPosition().x * 30;
+  }
+   getPositionY()
+  {
+    return this.body.GetPosition().y * 30;
+  }
+
   getRadius()
   {
     return this.width * 30
