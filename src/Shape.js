@@ -97,11 +97,11 @@ class Shape
   }
   getPositionX()
   {
-    return this.body.GetPosition().x;
+    return this.body.GetPosition().x * 30;
   }
    getPositionY()
   {
-    return this.body.GetPosition().y;
+    return this.body.GetPosition().y * 30;
   }
 
   clearEverything()
