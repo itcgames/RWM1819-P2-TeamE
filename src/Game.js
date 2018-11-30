@@ -220,6 +220,7 @@ class Game
       this.startGame = false
       }
 
+
     if (this.startGame === true)
     {
       this.world.Step(
@@ -233,7 +234,7 @@ class Game
     this.world.DrawDebugData();
     this.world.ClearForces();
 
-	for(var k = 0; k < snw.length; k++)
+        for(var k = 0; k < snw.length; k++)
 				{
 					snw[k].update();
 					snw[k].draw();
@@ -337,6 +338,7 @@ class Game
     ctx.drawImage(this.eraserImage,this.eraserPos, 10, this.sizeEraser, this.sizeEraser);
 
     document.body.style.background = "#ffffff";
+
       //this.AssetManager.draw();
     this.tip.draw(ctx);
 
