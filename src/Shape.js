@@ -92,12 +92,9 @@ class Shape
 
   setPosition(x, y)
   {
-    //this.myFixtureDef.density = density;
-    //this.myFixtureDef.friction = friction;
-    //this.myFixtureDef.restitution = restitution;
 
     this.body.SetPosition(new this.box2DVec(x,y));
-    //this.world.CreateBody(this.myBodyDef).CreateFixture(this.myFixtureDef);
+
   }
 
   getPosition()
