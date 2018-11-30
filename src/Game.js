@@ -223,7 +223,7 @@ class Game
         this.sizeEraser = 60
         gameNs.eraserOn = true;
         gameNs.pencilOn = false;
-        this.addScoreboardOnce = true
+        this.addScoreboardOnce = false
       }
       if (this.checkCollisionBetween(this.pencilPos, 10, 100, 100))
       {
@@ -231,7 +231,7 @@ class Game
         this.sizePencil = 60
         gameNs.pencilOn = true;
         gameNs.eraserOn = false;
-        this.addScoreboardOnce = true
+        this.addScoreboardOnce = false
       }
 
       if (gameNs.eraserOn === true)
@@ -244,13 +244,13 @@ class Game
     if (this.checkCollisionBetween(this.playPos, 450, 100, 100))
     {
       this.startGame = true
-      this.addScoreboardOnce = true
+      this.addScoreboardOnce = false
     }
     if (this.checkCollisionBetween(this.stopPos, 450, 100, 100))
     {
       if(this.addScoreboardOnce === false)
       {
-        gameNs.highscoretable.clearLocalStorage();
+      //  gameNs.highscoretable.clearLocalStorage();
         this.addScoreboardOnce = true;
         gameNs.highscoretable.addToBoard(gameNs.score);
         gameNs.score = 0;

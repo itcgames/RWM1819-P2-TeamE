@@ -17,6 +17,11 @@ class Play
       gameNs.menu = new MenuScene("Menu")
       gameNs.game = new Game("game")
 
+      gameNs.highscoretable = new ScoreboardManager();
+      gameNs.highscoretable.initBoard("local");
+      gameNs.highscoretable.startTimer();
+      gameNs.highscoretable.addToBoard(gameNs.score);
+
       gameNs.sceneManager.addScene(gameNs.titleScene);
       gameNs.sceneManager.addScene(gameNs.menu);
       gameNs.sceneManager.addScene(gameNs.game);
@@ -25,10 +30,7 @@ class Play
       gameNs.sceneManager.goToScene(gameNs.menu.title);
       this.update = this.update.bind(this);
 
-      gameNs.highscoretable = new ScoreboardManager();
-      gameNs.highscoretable.initBoard("local");
-      gameNs.highscoretable.startTimer();
-      gameNs.highscoretable.addToBoard(gameNs.score);
+
   }
 
   /**

@@ -29,10 +29,12 @@ class HighScore
 
   update()
   {
+    //gameNs.highscoretable.clearLocalStorage();
     if (this.gestureManager.getOnePointDetection())
     {
+      this.sortedVals = [];
       var table = gameNs.highscoretable.getBoard();
-      console.log("here" + table)
+      console.log(table)
 
       for(var i in table)
       {
@@ -101,6 +103,7 @@ class HighScore
     else {
       this.value = 10
     }
+    console.log(this.sortedVals)
     for(var i = 0 ;i<this.value; i++)
     {
       ctx.fillText(this.sortedVals[i].name,this.posX,this.posY + (this.yOffset *i));

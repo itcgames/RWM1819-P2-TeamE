@@ -1,6 +1,7 @@
 [submodule "lib/RWM1819-Scoreboard-A"]
 	path = lib/RWM1819-Scoreboard-A
 	url = https://github.com/Davidnln13/RWM1819-Scoreboard-A.git
+	branch = Fixingscore
 [submodule "lib/RWM1819-Gesture-A"]
 	path = lib/RWM1819-Gesture-A
 	url = https://github.com/itcgames/RWM1819-Gesture-A
