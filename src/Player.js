@@ -10,10 +10,16 @@ class Player {
      * and the gesture manager that detects a touch from the player
      */
     constructor() {
+
         this.x = window.innerWidth / 2;
         this.y = window.innerHeight - 100;
+
         this.width = 50;
         this.height = 50;
+
+        //this.playerSprite = new Image();
+        //this.playerSprite.src = "resources/img/player.png";
+        
         this.gestureManager = new GestureManager();
         this.gestureManager.init();
     }
@@ -29,14 +35,15 @@ class Player {
     /**
      * draws the player
      */
-    render() {
-        var canvas = document.getElementById("mycanvas");
-        var ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    render(ctx) {
+        //var canvas = document.createElement("mycanvas");
+        //var ctx = mycanvas.getContext("2d");
+        //ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+
+        //ctx.drawImage(this.playerSprite, 300, 50, 300, 100);     
 
         ctx.fillStyle = "blue";
-        ctx.fillRect(this.x, this.y, this.height, this.width); 
-        
+        ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
     /**
