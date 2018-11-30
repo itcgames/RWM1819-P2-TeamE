@@ -24,6 +24,11 @@ class Play
       gameNs.sceneManager.addScene(gameNs.highScore);
       gameNs.sceneManager.goToScene(gameNs.menu.title);
       this.update = this.update.bind(this);
+
+      gameNs.highscoretable = new ScoreboardManager();
+      gameNs.highscoretable.initBoard("local");
+      gameNs.highscoretable.startTimer();
+      gameNs.highscoretable.addToBoard(gameNs.score);
   }
 
   /**

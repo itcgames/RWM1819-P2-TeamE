@@ -342,6 +342,7 @@ class Help
       //...while this.stopPressed is true
       if(this.stopPressed === true)
       {
+
         // this.text is set to blank
         this.text = "";
         // Bools including this.stopPressed are set to false

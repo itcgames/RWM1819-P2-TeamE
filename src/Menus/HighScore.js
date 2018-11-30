@@ -17,18 +17,40 @@ class HighScore
 
 
     this.playBtn.src = "resources/img/main_button.png";
-
+    this.sortedVals = [];
+    this.posX = 300;
+    this.posY = 100;
+    this.yOffset = 50;
+    this.xOffset = 300;
     this.startingPosition = []
     this.gestureManager = new GestureManager()
-    this.highscoretable = new ScoreboardManager();
-    this.gestureManager.init()
+    this.gestureManager.init();
   }
-
 
   update()
   {
     if (this.gestureManager.getOnePointDetection())
     {
+      var table = gameNs.highscoretable.getBoard();
+
+
+      for(var i in table)
+      {
+        this.sortedVals.push(table[i]);
+      }
+
+      this.sortedVals.sort(function(a,b){
+        if(a.score > b.score) return -1;
+       if(a.score < b.score) return 1;
+       return 0;
+     });
+
+
+     console.log(this.sortedVals)
+
+    // gameNs.highscoretable = sortedVals;
+
+      console.log(gameNs.highscoretable);
       this.gestureManager.getTouchPosition()
 
       this.startingPosition = this.gestureManager.getTouchPosition()
@@ -68,7 +90,15 @@ class HighScore
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
     document.body.style.background = "#66F9FF";
 
-    ctx.font = '100px serif'; //48
+    ctx.font = '32px serif'; //48
+    ctx.fillText("NAME",300,25);
+    ctx.fillText("SCORE",600,25);
+    for(var i = 0 ;i<10; i++)
+    {
+      ctx.fillText(this.sortedVals[i].name,this.posX,this.posY + (this.yOffset *i));
+      ctx.fillText(this.sortedVals[i].score,this.posX+this.xOffset,this.posY + (this.yOffset *i));
+    }
+
   //  this.playBtn.draw();
 
     ctx.drawImage(this.playBtn,750, 500, 200, 100);

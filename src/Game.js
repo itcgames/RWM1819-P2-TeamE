@@ -68,6 +68,9 @@ class Game
     gameNs.eraserOn = false
     gameNs.pencilOn = false
 
+
+    gameNs.score = 0;
+
     this.normalSpeed =new Image();
     this.speedUp = new Image();
     this.slowSpeed = new Image();
@@ -79,7 +82,6 @@ class Game
     this.normalSize = 50;
     this.speedUpSize = 40;
     this.slowSize = 40;
-
 
     // this.AssetManager = new AssetManager(200, 200, 500, 250, "mycanvas");
      gameNs.world = this.world
@@ -113,8 +115,7 @@ class Game
 
      this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");*/
 
-
-
+     this.addScoreboardOnce = false
 	    for(var i = 0; i < 400; i++)
     		{
     			snw[i] = new snow();
@@ -229,6 +230,7 @@ class Game
         this.sizeEraser = 60
         gameNs.eraserOn = true;
         gameNs.pencilOn = false;
+        this.addScoreboardOnce = true
       }
       if (this.checkCollisionBetween(this.pencilPos, 10, 100, 100))
       {
@@ -236,6 +238,7 @@ class Game
         this.sizePencil = 60
         gameNs.pencilOn = true;
         gameNs.eraserOn = false;
+        this.addScoreboardOnce = true
       }
 
       if (gameNs.eraserOn === true)
@@ -248,9 +251,18 @@ class Game
     if (this.checkCollisionBetween(this.playPos, 450, 100, 100))
     {
       this.startGame = true
+      this.addScoreboardOnce = true
     }
     if (this.checkCollisionBetween(this.stopPos, 450, 100, 100))
     {
+      if(this.addScoreboardOnce === false)
+      {
+        this.addScoreboardOnce = true;
+        gameNs.highscoretable.addToBoard(gameNs.score);
+        gameNs.score = 0;
+        console.log(gameNs.highscoretable)
+      }
+
       this.shape.setPosition(1.5,2.2)
       this.startGame = false
       }
@@ -378,6 +390,21 @@ class Game
           var line5 = "4: click the Clear Everything button to clear all of the lines";
           var line6 = "5: try to guide the ball into the gold coin";
 
+                    ctx.fillStyle = "yellow";
+                    ctx.fillRect(50, 710, 500, 200);
+
+                    ctx.font = "15px Comic Sans MS";
+                    ctx.fillStyle = "black";
+
+                    ctx.fillText(line1, 300, 730);
+                    ctx.fillText(line2, 300, 750);
+                    ctx.fillText(line3, 300, 770);
+                    ctx.fillText(line4, 300, 790);
+                    ctx.fillText(line5, 300, 810);
+                    ctx.fillText(line6, 300, 830);
+
+
+
         }
       //ctx.drawImage(this.mainBtn, 750, 500, 200, 100);
 
@@ -404,21 +431,6 @@ class Game
     })
 
     this.tip.draw(ctx);
-
-
-          ctx.fillStyle = "yellow";
-          ctx.fillRect(50, 710, 500, 200);
-
-          ctx.font = "15px Comic Sans MS";
-          ctx.fillStyle = "black";
-
-          ctx.fillText(line1, 300, 730);
-          ctx.fillText(line2, 300, 750);
-          ctx.fillText(line3, 300, 770);
-          ctx.fillText(line4, 300, 790);
-          ctx.fillText(line5, 300, 810);
-          ctx.fillText(line6, 300, 830);
-
 
 
 
