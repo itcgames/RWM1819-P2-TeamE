@@ -53,7 +53,7 @@ class Game
      gameNs.b2DebugDraw = this.b2DebugDraw
     // constructor(x,y,world,bodyType, shapeType, width,height,density,friction,restitution)
     //between 0 and 3.2 for whatever reason for x and y
-    this.shape = new Shape(20,2.2,this.world, "dynamic", "circle", 1,1,0.5,0.5,0.2);
+    this.shape = new Shape(1,2.2,this.world, "dynamic", "circle", 1,1,0.5,0.5,0.2);
   //  this.shape = new Shape(15,2.2,this.world, "dynamic", "square", 1,1,0.5,0.5,0.2);
 
      this.gestureManager = new GestureManager()
@@ -110,6 +110,7 @@ class Game
 
   checkCollisionBetween(x,y,width,height)
   {
+
    var collides = false;
    if ((this.realPosition[0] < x + width) &&
      (this.realPosition[0] > x) &&
@@ -136,7 +137,7 @@ class Game
  updatePositions(){
 
    this.playPos = this.shape.getPosition()
-   console.log(this.playPos)
+   //console.log(this.playPos)
  }
 
 
@@ -151,7 +152,7 @@ class Game
     this.updatePositions()
 
     //this.camera.update(this.shape.getPosition())
-
+    console.log(this.realPosition)
     var playX = this.shape.getPositionX();
     var playY = this.shape.getPositionY();
 

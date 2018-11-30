@@ -81,11 +81,11 @@ class GestureManager
           //...and the line drawn will have a thickness of 1.1, with a friction of 3.5
           this.line = new Line(this.vertexPoints, gameNs.world, 1.1, 1.2, 1, 50.5, 0.2);
         }
-        
-         gameNs.lineList.push(gameNs.line)
+
+        gameNs.lineList.push(this.line)
         gameNs.count += 1;
       }
-      
+
       this.vertexPoints.pop();
 
     }
