@@ -1,9 +1,11 @@
 function Camera()
 {
-	this.maxScreenX = gameNamespace.canvas.width;
-	this.maxScreenY = gameNamespace.canvas.height;
-	this.x = 0; /// = on game playerX = player.getX() then from game camera.update(playerX, playerY)
-	this.y = 0; /// = playerY = player.getY()
+	this.maxScreenX = app.ctx.canvas.width * 5;
+	this.maxScreenY = app.ctx.canvas.height * 5;
+	this.x = 0;
+	this.y = 0;
+	this.cameraX = 0
+
 
 	this.update = function(playerX, playerY)
 	{
@@ -11,14 +13,21 @@ function Camera()
 		this.y = playerY;
 
 		app.ctx.setTransform(1,0,0,1,0,0);//reset the transform matrix
-    	app.ctx.clearRect(0, 0, gameNamespace.canvas.width, gameNamespace.canvas.height);
+    	///app.ctx.clearRect(0, 0, app.ctx.canvas.width, app.ctx.canvas.height);  ///if this is uncommented you cant see the box2d stuff)
 
-    	///Clamp the camera position and centre on the player                                            
-    	var camX = clamp(-this.x + gameNamespace.canvas.width/2, 0, this.maxScreenX - gameNamespace.canvas.width);
-    	var camY = clamp(-this.y + gameNamespace.canvas.height/2, 0, this.maxScreenY - gameNamespace.canvas.height);
-
-    	app.ctx.translate(camX, camY);   
+    	///Clamp the camera position and centre on the player
+        ///current value, min value, max value
+    	this.cameraX = clamp(this.x - 200, 0, this.maxScreenX);
+    	var camY = clamp(this.y, 0, this.maxScreenY);
+    	app.ctx.translate(-this.cameraX, 0);
 	}
+
+	this.getCameraX = function()
+	{
+		return this.cameraX;
+	}
+
+
 
 	function clamp(value, min, max)
 	{
