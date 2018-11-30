@@ -67,6 +67,10 @@ class Shape
       this.myFixtureDef.shape = new b2PolygonShape(width + 0.1 ,height + 0.1);
     }
 
+    this.myFixtureDef.density = 1.0;
+    this.myFixtureDef.friction = 0.5;
+   this.myFixtureDef.restitution = 0.2;
+
     this.myBodyDef.position.x = x //* 10;
     this.myBodyDef.position.y = y //* 10;
 
