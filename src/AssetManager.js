@@ -23,6 +23,7 @@
          this.ticksPerFrame = 0;
          this.numberPerFrame = 1;
          this.loop = true;
+         this.alive = true;
 
      }
 
@@ -82,6 +83,15 @@
 
      setHeight(height) {
          this.height = height;
+     }
+
+     getAlive()
+     {
+       return this.alive;
+     }
+     setAlive(alive)
+     {
+       this.alive = alive;
      }
 
      update() {

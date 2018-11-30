@@ -282,7 +282,7 @@ class Game
       var playY = this.shape.getPositionY();
 
       gameNs.cam.update(playX, playY);
-
+      this.coinCollision();
   }
 
 
@@ -342,12 +342,21 @@ class Game
 
   }
 
-  /*coinCollision()
+  coinCollision()
   {
     this.coins.forEach(coin => {
-      this.checkCollisionBetween(coin.getPosX(), coin.getPosY(), this.body.getPositionX)
+       if (this.checkCollisionBetween(coin.getPosX(), coin.getPosY(), this.shape.getPositionX(), this.shape.getPositionY() ))
+       {
+         coin.setAlive(false);
+         coin.setPos(10000,10000);
+         console.log("collision");
+       }
+       else {
+
+         coin.setAlive(true);
+       }
     })
-  }*/
+  }
 
 
   render()
@@ -385,9 +394,15 @@ class Game
 
       //this.AssetManager.draw();
 
+
     this.coins.forEach(coin => {
-      coin.draw();
+      if (coin.alive === true)
+      {
+        coin.draw();
+      }
+
     })
+
     this.tip.draw(ctx);
 
 
