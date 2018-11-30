@@ -1,6 +1,6 @@
 class Play
 {
-  constructor(title)
+  constructor()
   {
 
   }
@@ -11,14 +11,19 @@ class Play
   initWorld()
   {
       gameNs.sceneManager = new SceneManager();
-      gameNs.titleScene = new MenuScene("Title")
+      gameNs.titleScene = new TitleScene("Title")
+      gameNs.help = new Help("help")
+      gameNs.highScore = new HighScore("highScore")
       gameNs.menu = new MenuScene("Menu")
       gameNs.game = new Game("game")
 
       gameNs.sceneManager.addScene(gameNs.titleScene);
       gameNs.sceneManager.addScene(gameNs.menu);
       gameNs.sceneManager.addScene(gameNs.game);
-      gameNs.sceneManager.goToScene(gameNs.titleScene.title);
+      gameNs.sceneManager.addScene(gameNs.help);
+      gameNs.sceneManager.addScene(gameNs.highScore);
+      gameNs.sceneManager.goToScene(gameNs.menu.title);
+      this.update = this.update.bind(this);
   }
 
   /**

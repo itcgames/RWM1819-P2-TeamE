@@ -15,27 +15,34 @@ class TitleScene
   {
     this.title = title
     this.gestureManager = new GestureManager()
-  }
-
-  initWorld()
-  {
-    console.log("Initialising game world");
+    this.timeOne = new Date().getTime()
     this.gestureManager.init()
-    this.update = this.update.bind(this);
+    this.currentTime = null
+    this.newTime = null
+    this.image = new Image()
+
+    this.image.src = "resources/img/title.png"
+
   }
 
   update()
   {
-    if (this.gestureManager.getOnePointDetection())
+    this.newTime = new Date().getTime()
+    this.currentTime = this.newTime - this.timeOne
+
+
+    if(this.currentTime > 5000)
     {
-      gameNs.sceneManager.goToScene(gameNs.menu.title)
-      //gameNs.sceneManager.render()
-      this.gestureManager.resetDetection()
+        this.ChangeScene()
     }
 
-
-    //this.render()
   }
+
+  ChangeScene()
+  {
+    gameNs.sceneManager.goToScene(gameNs.menu.title)
+  }
+
 
   render()
   {
@@ -45,7 +52,10 @@ class TitleScene
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
     ctx.font = '100px serif'; //48
 
-    ctx.fillText(this.title, 100,100);
+    ctx.drawImage(this.image,250, 50, 500, 500);
+
+  //  ctx.fillText(this.title, 100,100);
+
   }
 
 }
