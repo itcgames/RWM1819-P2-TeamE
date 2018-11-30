@@ -7,13 +7,18 @@ class Game
   constructor(title)
   {
 
-    this.size = 100
-    this.pencilPos = []
-    this.eraserPos = []
-    this.playPos = []
-    this.stopPos = []
+
+    this.sizePencil = 50
+    this.sizeEraser = 50
+    this.pencilPos = 0
+    this.eraserPos = 0
+    this.playPos = 0
+    this.stopPos = 0
     //this.camera = new Camera()
     this.startGame = false
+
+    this.tutorialBool = false;
+
     this.title = title
     this.gravity = 10
     var b2Vec2 = Box2D.Common.Math.b2Vec2
@@ -22,11 +27,17 @@ class Game
     this.playImage = new Image()
     this.playImage.src = "resources/img/playBtn.png";
     this.stopImage = new Image()
+
+    this.stopImage.src = "resources/img/stopBtn.png";
+    this.mainBtn = new Image();
+    this.mainBtn.src = "resources/img/main_button.png";
+
     this.stopImage.src = "resources/img/stopBtn.png";
     this.pencilImage = new Image()
     this.pencilImage.src = "resources/img/Pencil.png";
     this.eraserImage = new Image()
     this.eraserImage.src = "resources/img/eraser.png";
+
     this.world = new b2World(
           new b2Vec2(0, this.gravity)    //gravity
        ,  false                 //allow sleep
@@ -94,7 +105,7 @@ class Game
           {
             that.shape.clearLastDrawn();
           });
-
+        this.cam = new Camera();
   }
     /**
   * initWorld
@@ -103,9 +114,6 @@ class Game
   initWorld()
   {
     console.log("Initialising game world");
-
-    //this.startGame = false
-    //this.update = this.update.bind(this);
   }
 
   checkCollisionBetween(x,y,width,height)
@@ -136,8 +144,15 @@ class Game
 
  updatePositions(){
 
-   this.playPos = this.shape.getPosition()
-   //console.log(this.playPos)
+   this.playPos = this.cam.getCameraX();
+   this.playPos = this.playPos + 50
+   this.stopPos = this.cam.getCameraX();
+   this.stopPos = this.playPos + 200
+   this.pencilPos = this.cam.getCameraX();
+   this.pencilPos = this.playPos + 300
+   this.eraserPos = this.cam.getCameraX();
+   this.eraserPos = this.playPos + 450
+
  }
 
 
@@ -148,11 +163,11 @@ class Game
  */
   update()
   {
-    console.log(this.shape.getPosition())
+    //console.log(this.shape.getPosition())
     this.updatePositions()
 
     //this.camera.update(this.shape.getPosition())
-    console.log(this.realPosition)
+    //console.log(this.realPosition)
     var playX = this.shape.getPositionX();
     var playY = this.shape.getPositionY();
 
@@ -166,18 +181,24 @@ class Game
       this.startingPosition[1] = this.startingPosition[1] / 30
 
       }
+    if (this.checkCollisionBetween(750, 500, 200, 100) && this.tutorialBool === true) {
+          gameNs.sceneManager.goToScene(gameNs.menu.title);
+          this.tutorialBool = false;
+    }
 
       this.speedIconSelect();
 
-      if (this.checkCollisionBetween(500, 10, 100, 100))
+      if (this.checkCollisionBetween(this.eraserPos, 10, 50, 100))
       {
         //console.log("eraser on")
+        this.sizeEraser = 60
         gameNs.eraserOn = true;
         gameNs.pencilOn = false;
       }
-      if (this.checkCollisionBetween(350, 10, 100, 100))
+      if (this.checkCollisionBetween(this.pencilPos, 10, 100, 100))
       {
         //console.log("pencil on")
+        this.sizePencil = 60
         gameNs.pencilOn = true;
         gameNs.eraserOn = false;
       }
@@ -188,17 +209,17 @@ class Game
       }
       //console.log(gameNs.eraserOn)
 
-    if (this.checkCollisionBetween(50, 450, 100, 100))
+
+    if (this.checkCollisionBetween(this.playPos, 450, 100, 100))
     {
       this.startGame = true
     }
-    if (this.checkCollisionBetween(200, 450, 100, 100))
+    if (this.checkCollisionBetween(this.stopPos, 450, 100, 100))
     {
       this.shape.setPosition(1.5,2.2)
       this.startGame = false
-    }
-    //this.AssetManager.update();
-    //window.requestAnimationFrame(gameNs.game.update);
+      }
+
     if (this.startGame === true)
     {
       this.world.Step(
@@ -212,7 +233,6 @@ class Game
     this.world.DrawDebugData();
     this.world.ClearForces();
 
-    //this.render();
 	for(var k = 0; k < snw.length; k++)
 				{
 					snw[k].update();
@@ -221,6 +241,10 @@ class Game
 
       this.tip.update();
       //this.render()
+      var playX = this.shape.getPositionX();
+      var playY = this.shape.getPositionY();
+
+      this.cam.update(playX, playY);
 
   }
 
@@ -288,24 +312,53 @@ class Game
     var ctx = canvas.getContext("2d");
     //ctx.drawImage(this.playImage,this.playPos[0], this.playPos[1], 100, 100);
 
-    ctx.drawImage(this.playImage,50, 450, 100, 100);
-    ctx.drawImage(this.stopImage,200, 450, 100, 100);
+    ctx.drawImage(this.playImage,this.playPos, 450, 100, 100);
+
+      ctx.drawImage(this.stopImage, this.stopPos, 450, 100, 100);
+
+      if (this.tutorialBool === true) {
+          var line1 = "HOW TO PLAY";
+          var line2 = "1: Click and drag the mouse to draw a line to catch the ball.";
+          var line3 = "2: Click the play button to let the ball drop and move";
+          var line4 = "3: click the stop button to reset the ball back to its starting position";
+          var line5 = "4: click the Clear Everything button to clear all of the lines";
+          var line6 = "5: try to guide the ball into the gold coin";
+
+        }
+      //ctx.drawImage(this.mainBtn, 750, 500, 200, 100);
+
 
 
     ctx.drawImage(this.normalSpeed,600, 10, this.normalSize, this.normalSize);
     ctx.drawImage(this.speedUp,700, 10, this.speedUpSize, this.speedUpSize);
     ctx.drawImage(this.slowSpeed,800, 10, this.slowSize, this.slowSize);
 
-    ctx.drawImage(this.pencilImage,350, 10, 50, 50);
-    ctx.drawImage(this.eraserImage,500, 10, 50, 50);
+    ctx.drawImage(this.pencilImage,this.pencilPos, 10, this.sizePencil, this.sizePencil);
+    ctx.drawImage(this.eraserImage,this.eraserPos, 10, this.sizeEraser, this.sizeEraser);
 
     document.body.style.background = "#ffffff";
       //this.AssetManager.draw();
     this.tip.draw(ctx);
 
 
-    //window.setInterval(this.update, 1000 / 60);
-  //  ctx.clearRect(0,0,canvas.width,canvas.height);
+          ctx.fillStyle = "yellow";
+          ctx.fillRect(50, 710, 500, 200);
 
+          ctx.font = "15px Comic Sans MS";
+          ctx.fillStyle = "black";
+
+          ctx.fillText(line1, 300, 730);
+          ctx.fillText(line2, 300, 750);
+          ctx.fillText(line3, 300, 770);
+          ctx.fillText(line4, 300, 790);
+          ctx.fillText(line5, 300, 810);
+          ctx.fillText(line6, 300, 830);
+
+
+
+
+      document.body.style.background = "#ffffff";
+
+      this.tip.draw(ctx);
   }
 }

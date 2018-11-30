@@ -4,6 +4,8 @@ function Camera()
 	this.maxScreenY = app.ctx.canvas.height * 5;
 	this.x = 0;
 	this.y = 0;
+	this.cameraX = 0
+
 
 	this.update = function(playerX, playerY)
 	{
@@ -15,10 +17,17 @@ function Camera()
 
     	///Clamp the camera position and centre on the player
         ///current value, min value, max value
-    	var camX = clamp(this.x, 0, this.maxScreenX);
+    	this.cameraX = clamp(this.x - 200, 0, this.maxScreenX);
     	var camY = clamp(this.y, 0, this.maxScreenY);
-    	app.ctx.translate(-camX, -camY);
+    	app.ctx.translate(-this.cameraX, 0);
 	}
+
+	this.getCameraX = function()
+	{
+		return this.cameraX;
+	}
+
+
 
 	function clamp(value, min, max)
 	{
