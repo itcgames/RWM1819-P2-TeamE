@@ -89,7 +89,6 @@ class SceneManager
   update()
   {
     this.currentScene.update()
-    //console.log(this.currentScene)
   }
 
   /**
@@ -99,8 +98,7 @@ class SceneManager
   render()
   {
   //  var curScene = this.dictionary[this.index];
-    this.currentScene.render();
-
+      this.currentScene.render();
   }
 
   getScene()
