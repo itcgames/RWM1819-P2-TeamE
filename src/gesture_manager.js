@@ -15,7 +15,8 @@ class GestureManager
     this.oneTouch = false;
     this.swipeDetected = false;
     this.direction = null;
-
+    gameNs.lineList = []
+    gameNs.count = 0
 
     //new line
     this.vertexPoints;
@@ -53,32 +54,42 @@ class GestureManager
   onTouchMove(e){
     e.preventDefault();
     this.touches = e.touches
-    this.startedDrawing = true;
-    this.vertexPoints.push(this.touches[0])
+
     var xUp = this.touches[0].clientX
     var yUp = this.touches[0].clientY
-    if(this.startedDrawing===true)
+    if (gameNs.pencilOn === true)
     {
-      // If the normal line is selected, then this.normalLine is set to true...
-      if(this.normalLine === true)
+      this.startedDrawing = true;
+      this.vertexPoints.push(this.touches[0])
+      if(this.startedDrawing===true)
       {
-        //...and the line drawn will have a thickness of 0.7, with a friction of 0.5
-        this.line = new Line(this.vertexPoints, gameNs.world, 0.7, 1.2, 1, 0.5, 0.2);
+        // If the normal line is selected, then this.normalLine is set to true...
+        if(this.normalLine === true)
+        {
+          //...and the line drawn will have a thickness of 0.7, with a friction of 0.5
+          this.line = new Line(this.vertexPoints, gameNs.world, 0.7, 1.2, 1, 0.5, 0.2);
+        }
+        // If speed line is selected, then this.speedLine is set to true..
+        if(this.speedLine === true)
+        {
+          //...and the line drawn will have a thickness of 0.3, with a friction of 0.3
+          this.line = new Line(this.vertexPoints, gameNs.world, 0.2, 0.2, 1, 0.3, 0.2);
+        }
+        // If slow line is selected, then this.slowLine is set to true...
+        if(this.slowLine === true)
+        {
+          //...and the line drawn will have a thickness of 1.1, with a friction of 3.5
+          this.line = new Line(this.vertexPoints, gameNs.world, 1.1, 1.2, 1, 50.5, 0.2);
+        }
+        
+         gameNs.lineList.push(gameNs.line)
+        gameNs.count += 1;
       }
-      // If speed line is selected, then this.speedLine is set to true..
-      if(this.speedLine === true)
-      {
-        //...and the line drawn will have a thickness of 0.3, with a friction of 0.3
-        this.line = new Line(this.vertexPoints, gameNs.world, 0.2, 0.2, 1, 0.3, 0.2);
-      }
-      // If slow line is selected, then this.slowLine is set to true...
-      if(this.slowLine === true)
-      {
-        //...and the line drawn will have a thickness of 1.1, with a friction of 3.5
-        this.line = new Line(this.vertexPoints, gameNs.world, 1.1, 1.2, 1, 50.5, 0.2);
-      }
+      
+      this.vertexPoints.pop();
+
     }
-    this.vertexPoints.pop();
+
 
     this.moving = true
 
@@ -88,26 +99,7 @@ class GestureManager
     var xDiff = this.lastX - xUp;
     var yDiff = this.lastY - yUp;
 
-    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-      if (xDiff > 0) {
-        this.direction = 'left'
-        this.swipeDetected = true
-      }
-      else {
-        this.direction = 'right'
-        this.swipeDetected = true
-      }
-    }
-    else {
-      if (yDiff > 0) {
-        this.direction = 'up'
-        this.swipeDetected = true
-      }
-      else {
-        this.direction = 'down'
-        this.swipeDetected = true
-      }
-    }
+
     this.lastX =  this.touches[0].clientX
     this.lastY =  this.touches[0].clientY
   }
@@ -115,7 +107,7 @@ class GestureManager
   onTouchEnd(e){
     e.preventDefault();
 
-
+    //if (gameNs.pencilOn === true)
     this.startedDrawing = false;
     //sets the time
     var currentTime = new Date().getTime();
