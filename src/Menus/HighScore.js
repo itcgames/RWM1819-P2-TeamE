@@ -93,7 +93,15 @@ class HighScore
     ctx.font = '32px serif'; //48
     ctx.fillText("NAME",300,25);
     ctx.fillText("SCORE",600,25);
-    for(var i = 0 ;i<10; i++)
+    this.value = 0;
+    if(this.sortedVals.length < 10)
+    {
+      this.value = this.sortedVals.length
+    }
+    else {
+      this.value = 10
+    }
+    for(var i = 0 ;i<this.value; i++)
     {
       ctx.fillText(this.sortedVals[i].name,this.posX,this.posY + (this.yOffset *i));
       ctx.fillText(this.sortedVals[i].score,this.posX+this.xOffset,this.posY + (this.yOffset *i));
