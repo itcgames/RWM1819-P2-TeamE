@@ -11,7 +11,7 @@ class SceneManager
  * initialises a dictionary
  * initialises a list
  * initialises the index to -1
- * initialises the number od scenes to -1
+ * initialises the number of scenes to -1
  */
   constructor()
   {
@@ -21,6 +21,9 @@ class SceneManager
     this.index = -1;
     this.numOfScenes = -1
     this.scenetitle = null
+    this.audioManager = new AudioManager();
+    this.audioManager.init();
+    this.dontPlayFirst = true;
   }
 
 /**
@@ -44,6 +47,12 @@ class SceneManager
    */
   goToScene(title)
   {
+    if(this.dontPlayFirst === false)
+    {
+      this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");
+      this.audioManager.playAudio("BUTTONCLICK",false,0.5);
+    }
+    this.dontPlayFirst =false;
     for (var i = 0; i < this.titles.length; i++)
     {
       if (this.titles[i] == title)

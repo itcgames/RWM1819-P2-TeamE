@@ -20,6 +20,7 @@ class HighScore
 
     this.startingPosition = []
     this.gestureManager = new GestureManager()
+    this.highscoretable = new ScoreboardManager();
     this.gestureManager.init()
   }
 
