@@ -1,9 +1,8 @@
 class Coin {
     constructor() {
-        this.x = this.getRandomInt(0, window.innerWidth - 100);
-        this.y = 0;
-        this.width = 50;
-        this.height = 50;
+
+        this.rect = { x: this.getRandomInt(0, window.innerWidth - 100), y: 0, width: 50, height: 50}
+
         //this.coinSprite = new Image();
         //this.coinSprite.src = "resources/img/mario_coin.png";
     }
@@ -20,18 +19,22 @@ class Coin {
         //ctx.drawImage(this.playerSprite, this.x, this.y, this.height, this.width);
 
         ctx.fillStyle = "gold";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
     }
 
     move() {
-        this.y += 3;
+        this.rect.y += 3;
     }
 
     boundaryCheck() {
-        if (this.y + this.width > window.innerHeight) {
-            this.x = this.getRandomInt(0, window.innerWidth - 100);
-            this.y = 0;
+        if (this.rect.y + this.rect.width > window.innerHeight) {
+            this.rect.x = this.getRandomInt(0, window.innerWidth - 100);
+            this.rect.y = 0;
         }
+    }
+
+    reset() {
+        this.rect = { x: this.getRandomInt(0, window.innerWidth - 100), y: 0, width: 50, height: 50 }
     }
 
     /**

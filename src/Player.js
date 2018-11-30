@@ -10,12 +10,7 @@ class Player {
      * and the gesture manager that detects a touch from the player
      */
     constructor() {
-
-        this.x = window.innerWidth / 2;
-        this.y = window.innerHeight - 100;
-
-        this.width = 50;
-        this.height = 50;
+        this.rect = { x: window.innerWidth / 2, y: window.innerHeight - 100, width: 50, height: 50}
 
         //this.playerSprite = new Image();
         //this.playerSprite.src = "resources/img/player.png";
@@ -43,7 +38,7 @@ class Player {
         //ctx.drawImage(this.playerSprite, 300, 50, 300, 100);     
 
         ctx.fillStyle = "blue";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
     }
 
     /**
@@ -55,11 +50,11 @@ class Player {
             var pos = this.gestureManager.getTouchPosition();
 
             if (pos[0] > window.innerWidth / 2) {
-                this.x += 5;
+                this.rect.x += 5;
             }
 
             if (pos[0] < window.innerWidth / 2) {
-                this.x -= 5;
+                this.rect.x -= 5;
             }
         }
     }
@@ -68,12 +63,12 @@ class Player {
      * stops the player from moving off the screen
      */
     boundaryCheck() {
-        if (this.x + (this.width * 2) > window.innerWidth) {
-            this.x = window.innerWidth - (this.width * 2);
+        if (this.rect.x + (this.rect.width * 2) > window.innerWidth) {
+            this.rect.x = window.innerWidth - (this.rect.width * 2);
         }
 
-        if (this.x < 0) {
-            this.x = 0;
+        if (this.rect.x < 0) {
+            this.rect.x = 0;
         }
     }
 }
