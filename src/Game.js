@@ -362,6 +362,7 @@ class Game
          coin.setAlive(false);
          coin.setPos(10000,10000);
          console.log("collision");
+         gameNs.score += 10;
        }
        else {
 
