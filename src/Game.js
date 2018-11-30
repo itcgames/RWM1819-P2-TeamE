@@ -28,6 +28,7 @@ class Game
     gameNs.eraserOn = false
     gameNs.pencilOn = false
 
+    gameNs.score = 0;
 
     // this.AssetManager = new AssetManager(200, 200, 500, 250, "mycanvas");
      gameNs.world = this.world
@@ -57,8 +58,7 @@ class Game
 
      this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");
 
-
-
+     this.addScoreboardOnce = false
 	    for(var i = 0; i < 400; i++)
     		{
     			snw[i] = new snow();
@@ -137,12 +137,14 @@ class Game
         //console.log("eraser on")
         gameNs.eraserOn = true;
         gameNs.pencilOn = false;
+        this.addScoreboardOnce = true
       }
       if (this.checkCollisionBetween(350, 10, 100, 100))
       {
         //console.log("pencil on")
         gameNs.pencilOn = true;
         gameNs.eraserOn = false;
+        this.addScoreboardOnce = true
       }
 
       if (gameNs.eraserOn === true)
@@ -154,9 +156,18 @@ class Game
     if (this.checkCollisionBetween(50, 450, 100, 100))
     {
       this.startGame = true
+      this.addScoreboardOnce = true
     }
     if (this.checkCollisionBetween(200, 450, 100, 100))
     {
+      if(this.addScoreboardOnce === false)
+      {
+        this.addScoreboardOnce = true;
+        gameNs.highscoretable.addToBoard(gameNs.score);
+        gameNs.score = 0;
+        console.log(gameNs.highscoretable)
+      }
+
       this.shape.setPosition(1.5,2.2)
       this.startGame = false
     }
