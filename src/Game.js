@@ -21,6 +21,17 @@ class Game
        ,  false                 //allow sleep
     );
 
+    this.normalSpeed =new Image();
+    this.speedUp = new Image();
+    this.slowSpeed = new Image();
+
+    this.normalSpeed.src = "resources/img/normal_speed.png";
+    this.speedUp.src = "resources/img/speed_up.png";
+    this.slowSpeed.src = "resources/img/slow_speed.png";
+
+    this.normalSize = 50;
+    this.speedUpSize = 40;
+    this.slowSize = 40;
 
     // this.AssetManager = new AssetManager(200, 200, 500, 250, "mycanvas");
      gameNs.world = this.world
@@ -39,16 +50,16 @@ class Game
      debugDraw.SetSprite(document.getElementById("mycanvas").getContext("2d"));
      debugDraw.SetDrawScale(30.0);
      debugDraw.SetFillAlpha(0.3);
-     debugDraw.SetLineThickness(1.0);
+     debugDraw.SetLineThickness(1);
      debugDraw.SetFlags(this.b2DebugDraw.e_shapeBit | this.b2DebugDraw.e_jointBit);
      this.world.SetDebugDraw(debugDraw);
 
-     this.audioManager = new AudioManager();
+     /*this.audioManager = new AudioManager();
      this.audioManager.init();
      this.audioManager.loadSoundFile("BACKGROUNDMUSIC", "resources/audio/backgroundMusic.mp3");
      this.audioManager.playAudio("BACKGROUNDMUSIC",true,0.5);
 
-     this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");
+     this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");*/
 
 
 
@@ -114,7 +125,7 @@ class Game
 
       }
 
-
+      this.speedIconSelect();
 
     if (this.checkCollisionBetween(50, 450, 100, 100))
     {
@@ -149,6 +160,39 @@ class Game
       this.tip.update();
   }
 
+  speedIconSelect()
+  {
+    // If the Normal Speed icon is selected...
+    if(this.checkCollisionBetween(600, 10, this.normalSize, this.normalSize))
+    {
+      this.gestureManager.setNormalSpeed();
+      // this.normalSize is set to 50, others sizes are set back to normal
+      this.normalSize = 50;
+      this.speedUpSize = 40;
+      this.slowSize = 40;
+    }
+
+    // If the Speed Up icon is selected...
+    if(this.checkCollisionBetween(700, 10, this.speedUpSize, this.speedUpSize))
+    {
+      this.gestureManager.setSpeedUp();
+      // this.speedSize is set to 50, others sizes are set back to normal
+      this.normalSize = 40;
+      this.speedUpSize = 50;
+      this.slowSize = 40;
+    }
+
+    // If the Slow Speed icon is selected...
+    if(this.checkCollisionBetween(800, 10, this.slowSize, this.slowSize))
+    {
+      this.gestureManager.setSlowSpeed();
+      // this.slowSize is set to 50, others sizes are set back to normal
+      this.normalSize = 40;
+      this.speedUpSize = 40;
+      this.slowSize = 50;
+    }
+  }
+
   render()
   {
     //setup debug draw
@@ -156,6 +200,11 @@ class Game
     var ctx = canvas.getContext("2d");
     ctx.drawImage(this.playImage,50, 450, 100, 100);
     ctx.drawImage(this.stopImage,200, 450, 100, 100);
+
+    ctx.drawImage(this.normalSpeed,600, 10, this.normalSize, this.normalSize);
+    ctx.drawImage(this.speedUp,700, 10, this.speedUpSize, this.speedUpSize);
+    ctx.drawImage(this.slowSpeed,800, 10, this.slowSize, this.slowSize);
+
     document.body.style.background = "#ffffff";
       //this.AssetManager.draw();
       this.tip.draw(ctx);

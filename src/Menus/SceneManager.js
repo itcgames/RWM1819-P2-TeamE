@@ -21,8 +21,8 @@ class SceneManager
     this.index = -1;
     this.numOfScenes = -1
     this.scenetitle = null
-    this.audioManager = new AudioManager();
-    this.audioManager.init();
+    //this.audioManager = new AudioManager();
+    //this.audioManager.init();
     this.dontPlayFirst = true;
   }
 
@@ -49,8 +49,8 @@ class SceneManager
   {
     if(this.dontPlayFirst === false)
     {
-      this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");
-      this.audioManager.playAudio("BUTTONCLICK",false,0.5);
+      /*this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");
+      this.audioManager.playAudio("BUTTONCLICK",false,0.5);*/
     }
     this.dontPlayFirst =false;
     for (var i = 0; i < this.titles.length; i++)

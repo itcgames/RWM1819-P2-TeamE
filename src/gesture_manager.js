@@ -23,6 +23,10 @@ class GestureManager
     this.startedDrawing = false;
     this.currentX = null
     this.currentY = null
+
+    this.normalLine = true;
+    this.speedLine = false;
+    this.slowLine = false;
   }
   init(){
     document.addEventListener("touchstart", this.onTouchStart.bind(this), {passive:false});
@@ -55,7 +59,24 @@ class GestureManager
     var yUp = this.touches[0].clientY
     if(this.startedDrawing===true)
     {
-      this.line = new Line(this.vertexPoints,gameNs.world, 1.2,1.2,1,0.5,0.2);
+      // If the normal line is selected, then this.normalLine is set to true...
+      if(this.normalLine === true)
+      {
+        //...and the line drawn will have a thickness of 0.7, with a friction of 0.5
+        this.line = new Line(this.vertexPoints, gameNs.world, 0.7, 1.2, 1, 0.5, 0.2);
+      }
+      // If speed line is selected, then this.speedLine is set to true..
+      if(this.speedLine === true)
+      {
+        //...and the line drawn will have a thickness of 0.3, with a friction of 0.3
+        this.line = new Line(this.vertexPoints, gameNs.world, 0.2, 0.2, 1, 0.3, 0.2);
+      }
+      // If slow line is selected, then this.slowLine is set to true...
+      if(this.slowLine === true)
+      {
+        //...and the line drawn will have a thickness of 1.1, with a friction of 3.5
+        this.line = new Line(this.vertexPoints, gameNs.world, 1.1, 1.2, 1, 50.5, 0.2);
+      }
     }
     this.vertexPoints.pop();
 
@@ -148,5 +169,35 @@ class GestureManager
   }
   getDoubleTouchDetection(){
     return this.doubleTouch;
+  }
+
+  /*
+   * Sets this.normalLine to true and the other bools to false
+   */
+  setNormalSpeed()
+  {
+    this.normalLine = true;
+    this.speedLine = false;
+    this.slowLine = false;
+  }
+
+  /*
+   * Sets this.speedLine to true and the other bools to false
+   */
+  setSpeedUp()
+  {
+    this.normalLine = false;
+    this.speedLine = true;
+    this.slowLine = false;
+  }
+
+  /*
+   * Sets this.slowLine to true and the other bools to false
+   */
+  setSlowSpeed()
+  {
+    this.normalLine = false;
+    this.speedLine = false;
+    this.slowLine = true;
   }
 }
