@@ -105,7 +105,7 @@ class Game
           {
             that.shape.clearLastDrawn();
           });
-        this.cam = new Camera();
+        gameNs.cam = new Camera();
   }
     /**
   * initWorld
@@ -144,13 +144,13 @@ class Game
 
  updatePositions(){
 
-   this.playPos = this.cam.getCameraX();
+   this.playPos = gameNs.cam.getCameraX();
    this.playPos = this.playPos + 50
-   this.stopPos = this.cam.getCameraX();
+   this.stopPos = gameNs.cam.getCameraX();
    this.stopPos = this.playPos + 200
-   this.pencilPos = this.cam.getCameraX();
+   this.pencilPos = gameNs.cam.getCameraX();
    this.pencilPos = this.playPos + 300
-   this.eraserPos = this.cam.getCameraX();
+   this.eraserPos = gameNs.cam.getCameraX();
    this.eraserPos = this.playPos + 450
 
  }
@@ -244,7 +244,7 @@ class Game
       var playX = this.shape.getPositionX();
       var playY = this.shape.getPositionY();
 
-      this.cam.update(playX, playY);
+      gameNs.cam.update(playX, playY);
 
   }
 
