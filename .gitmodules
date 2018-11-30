@@ -4,3 +4,6 @@
 [submodule "lib/RWM1819-Gesture-A"]
 	path = lib/RWM1819-Gesture-A
 	url = https://github.com/itcgames/RWM1819-Gesture-A
+[submodule "lib/RWM1819-Audio-A"]
+	path = lib/RWM1819-Audio-A
+	url = https://github.com/itcgames/RWM1819-Audio-A.git

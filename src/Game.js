@@ -48,6 +48,10 @@ class Game
      this.audioManager.loadSoundFile("BACKGROUNDMUSIC", "resources/audio/backgroundMusic.mp3");
      this.audioManager.playAudio("BACKGROUNDMUSIC",true,0.5);
 
+     this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");
+
+
+
 	    for(var i = 0; i < 400; i++)
     		{
     			snw[i] = new snow();
