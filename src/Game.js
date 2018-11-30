@@ -16,10 +16,17 @@ class Game
     this.playImage.src = "resources/img/playBtn.png";
     this.stopImage = new Image()
     this.stopImage.src = "resources/img/stopBtn.png";
+    this.pencilImage = new Image()
+    this.pencilImage.src = "resources/img/Pencil.png";
+    this.eraserImage = new Image()
+    this.eraserImage.src = "resources/img/eraser.png";
     this.world = new b2World(
           new b2Vec2(0, this.gravity)    //gravity
        ,  false                 //allow sleep
     );
+    this.bodyPosition = []
+    gameNs.eraserOn = false
+    gameNs.pencilOn = false
 
 
     // this.AssetManager = new AssetManager(200, 200, 500, 250, "mycanvas");
@@ -27,7 +34,7 @@ class Game
      gameNs.b2DebugDraw = this.b2DebugDraw
     // constructor(x,y,world,bodyType, shapeType, width,height,density,friction,restitution)
     //between 0 and 3.2 for whatever reason for x and y
-    this.shape = new Shape(11,2.2,this.world, "dynamic", "circle", 1,1,0.5,0.5,0.2);
+    this.shape = new Shape(20,2.2,this.world, "dynamic", "circle", 1,1,0.5,0.5,0.2);
   //  this.shape = new Shape(15,2.2,this.world, "dynamic", "square", 1,1,0.5,0.5,0.2);
 
      this.gestureManager = new GestureManager()
@@ -83,6 +90,21 @@ class Game
    return collides;
  }
 
+ checkCollisionBetweenCircles(x1,y1,radius1,x2,y2,radius2)
+ {
+   var collides = false;
+   var dx = this.realPosition[0] - x1;
+   var dy = this.realPosition[1] - y1;
+   var radii = radius1 + 20;
+   if ( ( dx * dx )  + ( dy * dy ) < radii * radii )
+   {
+      collides = true
+   }
+    return collides;
+ }
+
+
+
   /**
  * update
  * @desc calls draw and itself recursively also updates animations
@@ -102,9 +124,24 @@ class Game
 
       }
 
+      if (this.checkCollisionBetween(200, 10, 50, 50))
+      {
+        //console.log("eraser on")
+        gameNs.eraserOn = true;
+        gameNs.pencilOn = false;
+      }
+      if (this.checkCollisionBetween(50, 10, 50, 50))
+      {
+        //console.log("pencil on")
+        gameNs.pencilOn = true;
+        gameNs.eraserOn = false;
+      }
 
-
-
+      if (gameNs.eraserOn === true)
+      {
+        this.erase()
+      }
+      //console.log(gameNs.eraserOn)
 
     if (this.checkCollisionBetween(50, 450, 100, 100))
     {
@@ -139,6 +176,31 @@ class Game
       this.tip.update();
   }
 
+  erase()
+  {
+    //this.shape.Delete()
+    //var bodyPositionX = this.realPosition[0] / 30
+    //var collidePositionY = this.realPosition[1] / 30
+    //console.log(this.shape.getPosition())
+    for (var i = 0; i < gameNs.lineList.length; i++)
+    {
+      this.bodyPosition = gameNs.lineList[i].getPosition()
+      //this.bodyPosition = gameNs.line.getPosition()
+      this.bodyPosition[0] = this.bodyPosition[0] * 30
+      this.bodyPosition[1] = this.bodyPosition[1] * 30
+    //  console.log(this.bodyPosition[0] + ", " + this.bodyPosition[1])
+    //  console.log(this.realPosition[0] + ", " + this.realPosition[1])
+      if (this.checkCollisionBetweenCircles(this.bodyPosition[0],this.bodyPosition[1], gameNs.lineList[i].getRadius()))
+      {
+        gameNs.lineList[i].Delete()
+      }
+    }
+
+  }
+
+
+
+
   render()
   {
     //setup debug draw
@@ -146,9 +208,11 @@ class Game
     var ctx = canvas.getContext("2d");
     ctx.drawImage(this.playImage,50, 450, 100, 100);
     ctx.drawImage(this.stopImage,200, 450, 100, 100);
+    ctx.drawImage(this.pencilImage,50, 10, 50, 50);
+    ctx.drawImage(this.eraserImage,200, 10, 50, 50);
     document.body.style.background = "#ffffff";
       //this.AssetManager.draw();
-      this.tip.draw(ctx);
+    this.tip.draw(ctx);
 
 
     //window.setInterval(this.update, 1000 / 60);

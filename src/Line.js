@@ -2,6 +2,8 @@ class Line
 {
   constructor(vertexArr, world, width,height, density, friction, restitution)
   {
+    this.world = world
+    this.width = width
     var b2FixtureDef = Box2D.Dynamics.b2FixtureDef
     var	b2BodyDef = Box2D.Dynamics.b2BodyDef
     var	b2Body = Box2D.Dynamics.b2Body
@@ -34,7 +36,7 @@ class Line
 
     for(var i =0; i< points.length; i++)
     {
-        var bodyDef = new b2BodyDef;
+        this.bodyDef = new b2BodyDef;
         bodyDef.type = b2Body.b2_staticBody;
         var fixDef = new b2FixtureDef;
         fixDef.density = density;
@@ -43,11 +45,31 @@ class Line
         //fixDef.shape = new b2PolygonShape;
         fixDef.shape = new b2CircleShape(width);
       //  fixDef.shape.SetAsBox(0.2,0.2);
-        bodyDef.position.x = points[i].x;
-        bodyDef.position.y = points[i].y;
-        world.CreateBody(bodyDef).CreateFixture(fixDef);
+        this.bodyDef.position.x = points[i].x;
+        this.bodyDef.position.y = points[i].y;
+        //world.CreateBody(bodyDef).CreateFixture(fixDef);
+
+        this.body = this.world.CreateBody(this.bodyDef);
+
+        this.body.CreateFixture(fixDef);
     }
   //  world.CreateBody(bodyDef).CreateFixture(fixDef);
+  }
+
+  getPosition()
+  {
+    var bodyPosX = this.bodyDef.position.x
+    var bodyPosY = this.bodyDef.position.y
+    return [bodyPosX,  bodyPosY];
+  }
+  getRadius()
+  {
+    return this.width * 30
+  }
+
+  Delete()
+  {
+    this.world.DestroyBody(this.body)
   }
 
   update()

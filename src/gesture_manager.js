@@ -15,7 +15,8 @@ class GestureManager
     this.oneTouch = false;
     this.swipeDetected = false;
     this.direction = null;
-
+    gameNs.lineList = []
+    gameNs.count = 0
 
     //new line
     this.vertexPoints;
@@ -49,15 +50,22 @@ class GestureManager
   onTouchMove(e){
     e.preventDefault();
     this.touches = e.touches
-    this.startedDrawing = true;
-    this.vertexPoints.push(this.touches[0])
+
     var xUp = this.touches[0].clientX
     var yUp = this.touches[0].clientY
-    if(this.startedDrawing===true)
+    if (gameNs.pencilOn === true)
     {
-      this.line = new Line(this.vertexPoints,gameNs.world, 1.2,1.2,1,0.5,0.2);
+      this.startedDrawing = true;
+      this.vertexPoints.push(this.touches[0])
+      if(this.startedDrawing===true)
+      {
+        gameNs.line = new Line(this.vertexPoints,gameNs.world, 1.2,1.2,1,0.5,0.2);
+        gameNs.lineList.push(gameNs.line)
+        gameNs.count += 1;
+      }
+      this.vertexPoints.pop();
     }
-    this.vertexPoints.pop();
+
 
     this.moving = true
 
@@ -67,26 +75,7 @@ class GestureManager
     var xDiff = this.lastX - xUp;
     var yDiff = this.lastY - yUp;
 
-    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-      if (xDiff > 0) {
-        this.direction = 'left'
-        this.swipeDetected = true
-      }
-      else {
-        this.direction = 'right'
-        this.swipeDetected = true
-      }
-    }
-    else {
-      if (yDiff > 0) {
-        this.direction = 'up'
-        this.swipeDetected = true
-      }
-      else {
-        this.direction = 'down'
-        this.swipeDetected = true
-      }
-    }
+
     this.lastX =  this.touches[0].clientX
     this.lastY =  this.touches[0].clientY
   }
@@ -94,7 +83,7 @@ class GestureManager
   onTouchEnd(e){
     e.preventDefault();
 
-
+    //if (gameNs.pencilOn === true)
     this.startedDrawing = false;
     //sets the time
     var currentTime = new Date().getTime();
