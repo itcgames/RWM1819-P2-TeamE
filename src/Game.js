@@ -66,9 +66,9 @@ class Game
       var clearLastButton = document.getElementById("clearLast");
       clearLastButton.addEventListener("touchend", function()
           {
-            that.shape.clearLastDrawn();
+            that.shape.clearLast();
           });
-
+      this.cam = new Camera();
   }
     /**
   * initWorld
@@ -148,6 +148,11 @@ class Game
       }
 
       this.tip.update();
+
+      var playX = this.shape.getPositionX();
+      var playY = this.shape.getPositionY();
+
+      this.cam.update(playX, playY);
   }
 
   render()

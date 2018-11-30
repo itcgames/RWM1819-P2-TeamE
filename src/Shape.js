@@ -95,6 +95,14 @@ class Shape
     this.body.SetPosition(new this.box2DVec(x,y));
     //this.world.CreateBody(this.myBodyDef).CreateFixture(this.myFixtureDef);
   }
+  getPositionX()
+  {
+    return this.body.GetPosition().x;
+  }
+   getPositionY()
+  {
+    return this.body.GetPosition().y;
+  }
 
   clearEverything()
   {

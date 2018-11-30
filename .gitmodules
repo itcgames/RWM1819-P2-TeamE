@@ -7,3 +7,6 @@
 [submodule "lib/RWM1819-Audio-A"]
 	path = lib/RWM1819-Audio-A
 	url = https://github.com/itcgames/RWM1819-Audio-A.git
+[submodule "lib/https://github.com/itcgames/RWM1819-Weather-A"]
+	path = lib/RWM1819-RWM1819-Weather-A
+	url = https://github.com/itcgames/RWM1819-Weather-A.git
