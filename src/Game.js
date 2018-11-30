@@ -381,6 +381,21 @@ class Game
           var line5 = "4: click the Clear Everything button to clear all of the lines";
           var line6 = "5: try to guide the ball into the gold coin";
 
+                    ctx.fillStyle = "yellow";
+                    ctx.fillRect(50, 710, 500, 200);
+
+                    ctx.font = "15px Comic Sans MS";
+                    ctx.fillStyle = "black";
+
+                    ctx.fillText(line1, 300, 730);
+                    ctx.fillText(line2, 300, 750);
+                    ctx.fillText(line3, 300, 770);
+                    ctx.fillText(line4, 300, 790);
+                    ctx.fillText(line5, 300, 810);
+                    ctx.fillText(line6, 300, 830);
+
+
+
         }
       //ctx.drawImage(this.mainBtn, 750, 500, 200, 100);
 
@@ -401,21 +416,6 @@ class Game
       coin.draw();
     })
     this.tip.draw(ctx);
-
-
-          ctx.fillStyle = "yellow";
-          ctx.fillRect(50, 710, 500, 200);
-
-          ctx.font = "15px Comic Sans MS";
-          ctx.fillStyle = "black";
-
-          ctx.fillText(line1, 300, 730);
-          ctx.fillText(line2, 300, 750);
-          ctx.fillText(line3, 300, 770);
-          ctx.fillText(line4, 300, 790);
-          ctx.fillText(line5, 300, 810);
-          ctx.fillText(line6, 300, 830);
-
 
 
 
