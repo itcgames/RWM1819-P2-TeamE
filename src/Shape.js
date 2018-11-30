@@ -4,7 +4,8 @@ class Shape
 {
   constructor(x,y,world,bodyType, shapeType, width,height,density, friction, restitution)
   {
-    this.world = world
+    this.world = world;
+    this.width = width;
     //
     // var fixDef = new b2FixtureDef;
     // fixDef.density = 1.0;
@@ -50,7 +51,7 @@ class Shape
 
     this.myBodyDef = new b2BodyDef;
     this.myFixtureDef = new b2FixtureDef;
-    
+
     this.myFixtureDef.density = density;
     this.myFixtureDef.friction = friction;
     this.myFixtureDef.restitution = restitution;
@@ -91,11 +92,24 @@ class Shape
 
   setPosition(x, y)
   {
+    //this.myFixtureDef.density = density;
+    //this.myFixtureDef.friction = friction;
+    //this.myFixtureDef.restitution = restitution;
 
     this.body.SetPosition(new this.box2DVec(x,y));
     //this.world.CreateBody(this.myBodyDef).CreateFixture(this.myFixtureDef);
   }
 
+  getPosition()
+  {
+    var bodyPosX = this.myBodyDef.position.x
+    var bodyPosY = this.myBodyDef.position.y
+    return [bodyPosX,  bodyPosY];
+  }
+  getRadius()
+  {
+    return this.width * 30
+  }
   clearEverything()
   {
     for(var i in destroy)
@@ -105,9 +119,9 @@ class Shape
     destroy.length = 0;
   }
 
-  update()
+  Delete()
   {
-
+    this.world.DestroyBody(this.body)
   }
 
   draw()
