@@ -6,6 +6,29 @@ class Game
 {
   constructor(title)
   {
+
+    this.coins = [];
+    this.coins[0] = new AssetManager(100, 200 / 2, 300, 30, "mycanvas");
+    this.coins[1] = new AssetManager(600, 500 / 2, 300, 30, "mycanvas");
+    this.coins[2] = new AssetManager(150, 300 / 2, 300, 30, "mycanvas");
+    this.coins[3] = new AssetManager(600, 500 / 2, 300, 30, "mycanvas");
+    this.coins[4] = new AssetManager(250, 200 / 2, 300, 30, "mycanvas");
+    this.coins[5] = new AssetManager(800, 700 / 2, 300, 30, "mycanvas");
+    this.coins[6] = new AssetManager(200, 800 / 2, 300, 30, "mycanvas");
+    this.coins[7] = new AssetManager(300, 500 / 2, 300, 30, "mycanvas");
+    this.coins[8] = new AssetManager(750, 200 / 2, 300, 30, "mycanvas");
+    this.coins[9] = new AssetManager(650, 100 / 2, 300, 30, "mycanvas");
+    this.coins[10] = new AssetManager(225, 600 / 2, 300, 30, "mycanvas");
+    this.coins[11] = new AssetManager(675, 250 / 2, 300, 30, "mycanvas");
+    this.coins[12] = new AssetManager(50, 350 / 2, 300, 30, "mycanvas");
+    this.coins[13] = new AssetManager(850, 50 / 2, 300, 30, "mycanvas");
+    this.coins[14] = new AssetManager(150, 400 / 2, 300, 30, "mycanvas");
+    this.coins[15] = new AssetManager(625, 400 / 2, 300, 30, "mycanvas");
+
+    this.jsonLoader = new JsonLoader();
+    this.jsonLoader.loadJSON("Data");
+
+
     this.startGame = false
     this.title = title
     this.gravity = 10
@@ -29,6 +52,7 @@ class Game
     gameNs.pencilOn = false
 
 
+
     // this.AssetManager = new AssetManager(200, 200, 500, 250, "mycanvas");
      gameNs.world = this.world
      gameNs.b2DebugDraw = this.b2DebugDraw
@@ -36,6 +60,10 @@ class Game
     //between 0 and 3.2 for whatever reason for x and y
     this.shape = new Shape(20,2.2,this.world, "dynamic", "circle", 1,1,0.5,0.5,0.2);
   //  this.shape = new Shape(15,2.2,this.world, "dynamic", "square", 1,1,0.5,0.5,0.2);
+
+    this.coins.forEach(coin => {
+      coin.setSpriteSheet(true, 3, 10);
+    })
 
      this.gestureManager = new GestureManager()
      this.startingPosition = []
@@ -122,6 +150,14 @@ class Game
  */
   update()
   {
+    if ( gameNs.game.jsonLoader.getLoaded() === true )
+    {
+      //coins[0].setImage(Object.create(this.AssetManager.image));
+      //coins[1].setImage(Object.create(this.AssetManager.image));
+
+      // Set your Image to be animated giving, a loop bool, the speed it will change, how many frames in image.
+      //this.AssetManager.setSpriteSheet(true, 3, 10);
+
 
     if (this.gestureManager.getOnePointDetection())
     {
@@ -131,6 +167,11 @@ class Game
       this.startingPosition[1] = this.startingPosition[1] / 30
 
       }
+
+      //gameNs.game.AssetManager.update();
+    this.coins.forEach(coin => {
+      coin.update();
+    })
 
       if (this.checkCollisionBetween(500, 10, 100, 100))
       {
@@ -181,8 +222,10 @@ class Game
 					snw[k].draw();
       }
 
+
       this.tip.update();
   }
+}
 
   erase()
   {
@@ -206,7 +249,10 @@ class Game
 
   }
 
-
+  /*coinCollision()
+  {
+    if (this.shape.getPosition().bodyPosX === this.)
+  }*/
 
 
   render()
@@ -220,6 +266,10 @@ class Game
     ctx.drawImage(this.eraserImage,500, 10, 50, 50);
     document.body.style.background = "#ffffff";
       //this.AssetManager.draw();
+
+    this.coins.forEach(coin => {
+      coin.draw();
+    })
     this.tip.draw(ctx);
 
 
