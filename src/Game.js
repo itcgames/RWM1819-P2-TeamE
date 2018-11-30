@@ -43,7 +43,10 @@ class Game
      debugDraw.SetFlags(this.b2DebugDraw.e_shapeBit | this.b2DebugDraw.e_jointBit);
      this.world.SetDebugDraw(debugDraw);
 
-     //this.audioManager = new AudioManager();
+     this.audioManager = new AudioManager();
+     this.audioManager.init();
+     this.audioManager.loadSoundFile("BACKGROUNDMUSIC", "resources/audio/backgroundMusic.mp3");
+     this.audioManager.playAudio("BACKGROUNDMUSIC",true,0.5);
 
 	    for(var i = 0; i < 400; i++)
     		{
@@ -95,8 +98,8 @@ class Game
 
       }
 
-      
-      
+
+
 
 
     if (this.checkCollisionBetween(50, 450, 100, 100))
