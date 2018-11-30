@@ -20,7 +20,12 @@ class HighScore
 
     this.startingPosition = []
     this.gestureManager = new GestureManager()
+
     this.highscoretable = new ScoreboardManager();
+    this.highscoretable.readTextFile("resources/Data.txt")
+    this.highscoretable.sortTextFile();
+
+
     this.gestureManager.init()
   }
 
