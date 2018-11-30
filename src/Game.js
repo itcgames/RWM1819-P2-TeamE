@@ -6,7 +6,8 @@ class Game
 {
   constructor(title)
   {
-    this.startGame = false
+      this.startGame = false
+      this.tutorialBool = false;
     this.title = title
     this.gravity = 10
     var b2Vec2 = Box2D.Common.Math.b2Vec2
@@ -15,11 +16,17 @@ class Game
     this.playImage = new Image()
     this.playImage.src = "resources/img/playBtn.png";
     this.stopImage = new Image()
+
+      this.stopImage.src = "resources/img/stopBtn.png";
+      this.mainBtn = new Image();
+      this.mainBtn.src = "resources/img/main_button.png";
+
     this.stopImage.src = "resources/img/stopBtn.png";
     this.pencilImage = new Image()
     this.pencilImage.src = "resources/img/Pencil.png";
     this.eraserImage = new Image()
     this.eraserImage.src = "resources/img/eraser.png";
+
     this.world = new b2World(
           new b2Vec2(0, this.gravity)    //gravity
        ,  false                 //allow sleep
@@ -95,9 +102,6 @@ class Game
   initWorld()
   {
     console.log("Initialising game world");
-
-    //this.startGame = false
-    //this.update = this.update.bind(this);
   }
 
   checkCollisionBetween(x,y,width,height)
@@ -142,6 +146,13 @@ class Game
       this.startingPosition[1] = this.startingPosition[1] / 30
 
       }
+      if (this.checkCollisionBetween(750, 500, 200, 100) && this.tutorialBool === true) {
+          gameNs.sceneManager.goToScene(gameNs.menu.title);
+          this.tutorialBool = false;
+        }
+
+
+      }
 
       this.speedIconSelect();
 
@@ -164,6 +175,7 @@ class Game
       }
       //console.log(gameNs.eraserOn)
 
+
     if (this.checkCollisionBetween(50, 450, 100, 100))
     {
       this.startGame = true
@@ -172,9 +184,8 @@ class Game
     {
       this.shape.setPosition(1.5,2.2)
       this.startGame = false
-    }
-    //this.AssetManager.update();
-    //window.requestAnimationFrame(gameNs.game.update);
+      }
+
     if (this.startGame === true)
     {
       this.world.Step(
@@ -186,8 +197,7 @@ class Game
 
     this.world.DrawDebugData();
     this.world.ClearForces();
-
-    //this.render();
+      
 	for(var k = 0; k < snw.length; k++)
 				{
 					snw[k].update();
@@ -259,6 +269,20 @@ class Game
     var canvas = document.getElementById("mycanvas");
     var ctx = canvas.getContext("2d");
     ctx.drawImage(this.playImage,50, 450, 100, 100);
+
+      ctx.drawImage(this.stopImage, 200, 450, 100, 100);
+
+      if (this.tutorialBool === true) {
+          var line1 = "HOW TO PLAY";
+          var line2 = "1: Click and drag the mouse to draw a line to catch the ball.";
+          var line3 = "2: Click the play button to let the ball drop and move";
+          var line4 = "3: click the stop button to reset the ball back to its starting position";
+          var line5 = "4: click the Clear Everything button to clear all of the lines";
+          var line6 = "5: try to guide the ball into the gold coin";
+        
+
+          ctx.drawImage(this.mainBtn, 750, 500, 200, 100);
+
     ctx.drawImage(this.stopImage,200, 450, 100, 100);
 
 
@@ -274,8 +298,24 @@ class Game
     this.tip.draw(ctx);
 
 
-    //window.setInterval(this.update, 1000 / 60);
-  //  ctx.clearRect(0,0,canvas.width,canvas.height);
+          ctx.fillStyle = "yellow";
+          ctx.fillRect(50, 710, 500, 200);
 
+          ctx.font = "15px Comic Sans MS";
+          ctx.fillStyle = "black";
+
+          ctx.fillText(line1, 300, 730);
+          ctx.fillText(line2, 300, 750);
+          ctx.fillText(line3, 300, 770);
+          ctx.fillText(line4, 300, 790);
+          ctx.fillText(line5, 300, 810);
+          ctx.fillText(line6, 300, 830);
+
+          
+      }
+
+      document.body.style.background = "#ffffff";
+
+      this.tip.draw(ctx);
   }
 }
