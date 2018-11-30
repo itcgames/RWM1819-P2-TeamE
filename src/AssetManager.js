@@ -32,13 +32,6 @@
       */
      draw() {
           if(!this.spriteSheet){
-             	/*app.ctx.drawImage(this.image, 0, this.width,
-               this.height, this.x, this.y,
-                this.width, this.height);*/
-               /* var canvas = document.getElementById(AssetManager.canvas);
-                var context = canvas.getContext('2d');
-                 if(!AssetManager.spriteSheet){
-                    context.drawImage(AssetManager.image, AssetManager.x, AssetManager.y, AssetManager.width, AssetManager.height);*/
           }
           else{
              	app.ctx.drawImage(

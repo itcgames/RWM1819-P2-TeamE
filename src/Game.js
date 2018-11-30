@@ -83,13 +83,12 @@ class Game
     this.speedUpSize = 40;
     this.slowSize = 40;
 
-    // this.AssetManager = new AssetManager(200, 200, 500, 250, "mycanvas");
+
      gameNs.world = this.world
      gameNs.b2DebugDraw = this.b2DebugDraw
-    // constructor(x,y,world,bodyType, shapeType, width,height,density,friction,restitution)
-    //between 0 and 3.2 for whatever reason for x and y
+
     this.shape = new Shape(1,2.2,this.world, "dynamic", "circle", 1,1,0.5,0.5,0.2);
-  //  this.shape = new Shape(15,2.2,this.world, "dynamic", "square", 1,1,0.5,0.5,0.2);
+
 
     this.coins.forEach(coin => {
       coin.setSpriteSheet(true, 3, 10);
@@ -108,12 +107,6 @@ class Game
      debugDraw.SetFlags(this.b2DebugDraw.e_shapeBit | this.b2DebugDraw.e_jointBit);
      this.world.SetDebugDraw(debugDraw);
 
-     /*this.audioManager = new AudioManager();
-     this.audioManager.init();
-     this.audioManager.loadSoundFile("BACKGROUNDMUSIC", "resources/audio/backgroundMusic.mp3");
-     this.audioManager.playAudio("BACKGROUNDMUSIC",true,0.5);
-
-     this.audioManager.loadSoundFile("BUTTONCLICK","resources/audio/buttonClick.mp3");*/
 
      this.addScoreboardOnce = false
 	    for(var i = 0; i < 400; i++)
@@ -257,6 +250,7 @@ class Game
     {
       if(this.addScoreboardOnce === false)
       {
+        gameNs.highscoretable.clearLocalStorage();
         this.addScoreboardOnce = true;
         gameNs.highscoretable.addToBoard(gameNs.score);
         gameNs.score = 0;
@@ -297,47 +291,11 @@ class Game
       this.coinCollision();
   }
 
-
-  /*speedIconSelect()
-  {
-    // If the Normal Speed icon is selected...
-    if(this.checkCollisionBetween(600, 10, this.normalSize, this.normalSize))
-    {
-      this.gestureManager.setNormalSpeed();
-      // this.normalSize is set to 50, others sizes are set back to normal
-      this.normalSize = 50;
-      this.speedUpSize = 40;
-      this.slowSize = 40;
-    }
-
-    // If the Speed Up icon is selected...
-    if(this.checkCollisionBetween(700, 10, this.speedUpSize, this.speedUpSize))
-    {
-      this.gestureManager.setSpeedUp();
-      // this.speedSize is set to 50, others sizes are set back to normal
-      this.normalSize = 40;
-      this.speedUpSize = 50;
-      this.slowSize = 40;
-    }
-
-    // If the Slow Speed icon is selected...
-    if(this.checkCollisionBetween(800, 10, this.slowSize, this.slowSize))
-    {
-      this.gestureManager.setSlowSpeed();
-      // this.slowSize is set to 50, others sizes are set back to normal
-      this.normalSize = 40;
-      this.speedUpSize = 40;
-      this.slowSize = 50;
-    }
-  }*/
 }
 
   erase()
   {
-    //this.shape.Delete()
-    //var bodyPositionX = this.realPosition[0] / 30
-    //var collidePositionY = this.realPosition[1] / 30
-    //console.log(this.shape.getPosition())
+
     for (var i = 0; i < gameNs.lineList.length; i++)
     {
       this.bodyPosition = gameNs.lineList[i].getPosition()

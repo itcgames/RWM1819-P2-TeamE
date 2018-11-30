@@ -32,7 +32,7 @@ class HighScore
     if (this.gestureManager.getOnePointDetection())
     {
       var table = gameNs.highscoretable.getBoard();
-
+      console.log("here" + table)
 
       for(var i in table)
       {
