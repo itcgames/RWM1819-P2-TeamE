@@ -1,3 +1,5 @@
+var destroy =[];
+
 class Shape
 {
   constructor(x,y,world,bodyType, shapeType, width,height,density, friction, restitution)
@@ -82,12 +84,17 @@ class Shape
     this.myBodyDef.position.y = y //* 10;
 
     this.body = this.world.CreateBody(this.myBodyDef);
-
     this.body.CreateFixture(this.myFixtureDef);
+    destroy.pop(this.body);
+
+
   }
 
   setPosition(x, y)
   {
+    //this.myFixtureDef.density = density;
+    //this.myFixtureDef.friction = friction;
+    //this.myFixtureDef.restitution = restitution;
 
     this.body.SetPosition(new this.box2DVec(x,y));
     //this.world.CreateBody(this.myBodyDef).CreateFixture(this.myFixtureDef);
@@ -102,6 +109,14 @@ class Shape
   getRadius()
   {
     return this.width * 30
+  }
+  clearEverything()
+  {
+    for(var i in destroy)
+    {
+       gameNs.game.world.DestroyBody(destroy[i]);
+    }
+    destroy.length = 0;
   }
 
   Delete()

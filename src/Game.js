@@ -64,6 +64,17 @@ class Game
     			snw[i] = new snow();
       }
       this.tip = new tip();
+      var that = this;
+       var clearButton = document.getElementById("clearBodies");
+          clearButton.addEventListener("touchend", function()
+          {
+            that.shape.clearEverything();
+          });
+      var clearLastButton = document.getElementById("clearLast");
+      clearLastButton.addEventListener("touchend", function()
+          {
+            that.shape.clearLastDrawn();
+          });
 
   }
     /**
@@ -119,18 +130,15 @@ class Game
       this.startingPosition[0] = this.startingPosition[0] / 30
       this.startingPosition[1] = this.startingPosition[1] / 30
 
-
-      //this.gestureManager.resetDetection()
-
       }
 
-      if (this.checkCollisionBetween(200, 10, 50, 50))
+      if (this.checkCollisionBetween(500, 10, 100, 100))
       {
         //console.log("eraser on")
         gameNs.eraserOn = true;
         gameNs.pencilOn = false;
       }
-      if (this.checkCollisionBetween(50, 10, 50, 50))
+      if (this.checkCollisionBetween(350, 10, 100, 100))
       {
         //console.log("pencil on")
         gameNs.pencilOn = true;
@@ -208,8 +216,8 @@ class Game
     var ctx = canvas.getContext("2d");
     ctx.drawImage(this.playImage,50, 450, 100, 100);
     ctx.drawImage(this.stopImage,200, 450, 100, 100);
-    ctx.drawImage(this.pencilImage,50, 10, 50, 50);
-    ctx.drawImage(this.eraserImage,200, 10, 50, 50);
+    ctx.drawImage(this.pencilImage,350, 10, 50, 50);
+    ctx.drawImage(this.eraserImage,500, 10, 50, 50);
     document.body.style.background = "#ffffff";
       //this.AssetManager.draw();
     this.tip.draw(ctx);

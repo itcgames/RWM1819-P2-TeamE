@@ -52,6 +52,7 @@ class Line
         this.body = this.world.CreateBody(this.bodyDef);
 
         this.body.CreateFixture(fixDef);
+        destroy.push(this.body);
     }
   //  world.CreateBody(bodyDef).CreateFixture(fixDef);
   }
