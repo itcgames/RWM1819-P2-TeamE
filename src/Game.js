@@ -111,9 +111,8 @@ class Game
 
       //this.gestureManager.resetDetection()
 
+
       }
-
-
 
 
 
