@@ -137,7 +137,7 @@ class Game
  */
   update()
   {
-
+    
     if (this.gestureManager.getOnePointDetection())
     {
       this.startingPosition = this.gestureManager.getTouchPosition()
@@ -186,6 +186,7 @@ class Game
       this.startGame = false
       }
 
+
     if (this.startGame === true)
     {
       this.world.Step(
@@ -198,7 +199,7 @@ class Game
     this.world.DrawDebugData();
     this.world.ClearForces();
       
-	for(var k = 0; k < snw.length; k++)
+        for(var k = 0; k < snw.length; k++)
 				{
 					snw[k].update();
 					snw[k].draw();
@@ -261,6 +262,7 @@ class Game
       }
     }
 
+
   }
 
   render()
@@ -294,6 +296,7 @@ class Game
     ctx.drawImage(this.eraserImage,500, 10, 50, 50);
 
     document.body.style.background = "#ffffff";
+
       //this.AssetManager.draw();
     this.tip.draw(ctx);
 
