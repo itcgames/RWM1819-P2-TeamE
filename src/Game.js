@@ -57,6 +57,17 @@ class Game
     			snw[i] = new snow();
       }
       this.tip = new tip();
+      var that = this;
+       var clearButton = document.getElementById("clearBodies");
+          clearButton.addEventListener("touchend", function()
+          {
+            that.shape.clearEverything();
+          });
+      var clearLastButton = document.getElementById("clearLast");
+      clearLastButton.addEventListener("touchend", function()
+          {
+            that.shape.clearLastDrawn();
+          });
 
   }
     /**

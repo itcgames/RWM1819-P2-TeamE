@@ -45,7 +45,10 @@ class Line
       //  fixDef.shape.SetAsBox(0.2,0.2);
         bodyDef.position.x = points[i].x;
         bodyDef.position.y = points[i].y;
-        world.CreateBody(bodyDef).CreateFixture(fixDef);
+       var body = world.CreateBody(bodyDef)
+       body.CreateFixture(fixDef);
+       destroy.push(body);
+
     }
   //  world.CreateBody(bodyDef).CreateFixture(fixDef);
   }
