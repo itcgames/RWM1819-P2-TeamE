@@ -250,6 +250,7 @@ class Game
     {
       if(this.addScoreboardOnce === false)
       {
+        gameNs.highscoretable.clearLocalStorage();
         this.addScoreboardOnce = true;
         gameNs.highscoretable.addToBoard(gameNs.score);
         gameNs.score = 0;
