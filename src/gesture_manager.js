@@ -49,13 +49,15 @@ class GestureManager
   onTouchMove(e){
     e.preventDefault();
     this.touches = e.touches
-
     this.startedDrawing = true;
     this.vertexPoints.push(this.touches[0])
     var xUp = this.touches[0].clientX
     var yUp = this.touches[0].clientY
-
-
+    if(this.startedDrawing===true)
+    {
+      this.line = new Line(this.vertexPoints,gameNs.world, 1.2,1.2,1,0.5,0.2);
+    }
+    this.vertexPoints.pop();
 
     this.moving = true
 
@@ -92,10 +94,7 @@ class GestureManager
   onTouchEnd(e){
     e.preventDefault();
 
-    if(this.startedDrawing===true)
-    {
-      this.line = new Line(this.vertexPoints,gameNs.world, 1.2,1.2,1,0.5,0.2);
-    }
+
     this.startedDrawing = false;
     //sets the time
     var currentTime = new Date().getTime();

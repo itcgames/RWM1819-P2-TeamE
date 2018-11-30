@@ -5,7 +5,7 @@
  */
 
 /**
- * 
+ *
  */
 function tip()
 {
@@ -19,7 +19,6 @@ function tip()
 //updates the message with a new tip every 360 frames
 tip.prototype.update = function ()
 {
-    console.log(this.count);
     if (this.count === 360) {
         this.message = randomTips();
         this.count = 0;
@@ -30,7 +29,7 @@ tip.prototype.update = function ()
 }
 
 //////
-// draws the tip 
+// draws the tip
 tip.prototype.draw = function (ctx)
 {
     ctx.font = "15px Comic Sans MS";
@@ -55,5 +54,3 @@ function randomTips()
 
     return tips[randomTip];
 }
-
-
