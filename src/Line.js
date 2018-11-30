@@ -11,6 +11,7 @@ class Line
     var	b2MassData = Box2D.Collision.Shapes.b2MassData
     var	b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape
     var	b2CircleShape = Box2D.Collision.Shapes.b2CircleShape
+  //  this.b2Color = Box2D.Common.b2Color,
   //  var b2Vec2 = Box2D.Common.Math.b2Vec2;
 
     var fixDef = new b2FixtureDef;
@@ -36,6 +37,7 @@ class Line
 
     for(var i =0; i< points.length; i++)
     {
+        //this.b2Color.Set(255,255,255)
         this.bodyDef = new b2BodyDef;
         bodyDef.type = b2Body.b2_staticBody;
         var fixDef = new b2FixtureDef;
